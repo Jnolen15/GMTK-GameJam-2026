@@ -812,7 +812,7 @@ MonoBehaviour:
   _shiftLengthMinutes: 30
   _taskDeviationSeconds: 15
   _taskDeviationScaler: 0.9
-  _minSecondsBetweenTask: 5
+  _taskDeviationFloor: 5
   _mainTaskTimeSeconds: 60
   _mainTaskDelaySeconds: 15
 --- !u!1660057539 &9223372036854775807
