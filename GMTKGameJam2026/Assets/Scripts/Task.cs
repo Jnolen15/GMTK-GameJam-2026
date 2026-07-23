@@ -7,18 +7,21 @@ public class Task : MonoBehaviour
 
     [SerializeField] private float taskTimeStamp;
 
+    public  delegate void TaskEvent(float i);
+    public static event TaskEvent OnTaskUpdate;
+
 
     // ------------------------------------- Functions -------------------------------------
     void Start()
     {
-
+        // subscribe to events
 
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        // unsubscribe from events
     }
 
 
@@ -35,7 +38,10 @@ public class Task : MonoBehaviour
         Debug.Log("Created Task");
         taskTimeStamp = Time.time;
     }
-    
-  
+
+    public void OnDestroy()
+    {
+        // unsubscribe from events
+    }
 
 }

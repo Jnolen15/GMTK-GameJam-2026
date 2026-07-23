@@ -4,19 +4,21 @@ using System.Collections.Generic;
 using System.Collections;
 using Unity.VisualScripting;
 using System;
+using UnityEngine.EventSystems;
 
 public class GameplayManager : MonoBehaviour
 {
+    [Header("Check for fast testing")]
+    [SerializeField] private bool UsingTestParameters = false;
+
     // ------------------------------------- Variables -------------------------------------
     [Header("Variables")]
     [SerializeField] public float gameStartTime = 0; // keeps track of when the game "starts"
     
-
-
     [SerializeField] private float _shiftLengthMinutes = 30; // longest possible time the game can run
     [SerializeField] private float _taskDeviationSeconds = 15; // time between giving the player tasks
     [SerializeField] private float _taskDeviationScaler = 0.9f; // multiplier that reduces time between each subsequent task
-    [SerializeField] private float _minSecondsBetweenTask = 5; // minimum time between tasks
+    [SerializeField] private float _taskDeviationFloor = 5; // minimum time between tasks
 
     // main task variables
     private Boolean mainTaskStarted = false;
@@ -24,36 +26,86 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] private float _mainTaskTimeSeconds = 60; // Time until the main task ends
     private float _mainTaskDelayTimeStamp; // stamp for when the main task stats counting down again
     [SerializeField] private float _mainTaskDelaySeconds = 15; // Time the main task delays until coninuing to count down
+    private float _mainTaskSecondsLeft; // keeps track of the main task time left
 
+
+    private Boolean _gameOver = false;
     
     // lists
     private List<Task> taskList = new List<Task>();
 
+    // events
+    public delegate void GameManagerEvent(float input);
+    public static event GameManagerEvent OnMainTimerUpdate;
+    public static event GameManagerEvent OnMainTaskDelayReset;
+    public static event GameManagerEvent OnGameOver;
+
+
+
 
     // ------------------------------------- Functions -------------------------------------
+
+    #region Functions
     void Start()
     {
+        // subscribe to events
+
+        if (UsingTestParameters) UseTestParameters();
+
         gameStartTime = Time.time;
         StartCoroutine(TaskTimer(_taskDeviationSeconds));
+
+        StartMainTask();
+    }
+
+    private void OnDestroy()
+    {
+         // unsubscribe from events
+    }
+
+    // tweaked testing values to check if they are working faster
+    private void UseTestParameters()
+    {
+        _shiftLengthMinutes = 0.5f;
+        _mainTaskDelaySeconds = 2;
+        _mainTaskTimeSeconds = 5;
+        _taskDeviationSeconds = 3;
+        _taskDeviationFloor = 1;
     }
 
     void Update()
     {
-        if (mainTaskStarted)    
+        if (mainTaskStarted && Time.time > _mainTaskDelayTimeStamp)
+        {
+            _mainTaskSecondsLeft -= Time.deltaTime;
+            OnMainTimerUpdate?.Invoke(_mainTaskSecondsLeft);
+        }
 
-
-        // end game check
-        if (Time.time > _shiftLengthMinutes * 60) EndGame(); 
+        // end game checks
+        if (!_gameOver && mainTaskStarted)
+        {
+            if (Time.time > _shiftLengthMinutes * 60f + Time.time) EndGame("Game Over - shift finished with time to spare");
+            if (_mainTaskSecondsLeft <= 0f) EndGame("Game Over - your countdown finished");
+        }
+        
     }
 
 
     public void ResetMainTaskDelay()
     {
-        ;
+        _mainTaskDelayTimeStamp = Time.time + _mainTaskDelaySeconds;
     }
 
+    public void StartMainTask()
+    {
+        mainTaskStarted = true;
+        ResetMainTaskDelay(); // start delay
+        _mainTaskSecondsLeft = _mainTaskTimeSeconds; // set the dynamic var
 
+        OnMainTimerUpdate?.Invoke(_mainTaskTimeSeconds); // initialize UI element text
 
+        Debug.Log("Main task Started");
+    }
 
 
     public void StartTask(string name)
@@ -68,16 +120,16 @@ public class GameplayManager : MonoBehaviour
         taskList.Add(tempTask);
     }
 
-
-    public void StartTask()
+    public void EndGame(string text)
     {
-        return;
+        _gameOver = true;
+        OnGameOver?.Invoke(0);
+        Debug.Log(text);
     }
 
-    public void EndGame()
-    {
-        Debug.Log("Game Over - shift finished");
-    }
+
+
+    #endregion
 
     // ------------------------------------- Coroutines -------------------------------------
     private IEnumerator TaskTimer(float time)
@@ -89,7 +141,7 @@ public class GameplayManager : MonoBehaviour
         StartTask("Template Task");
 
         // loop and start the next task with less time, floors at _minSecondsBetweenTasks
-        StartCoroutine(TaskTimer(time * _taskDeviationScaler > _minSecondsBetweenTask ? time * _taskDeviationScaler : _minSecondsBetweenTask));
+        StartCoroutine(TaskTimer(time * _taskDeviationScaler > _taskDeviationFloor ? time * _taskDeviationScaler : _taskDeviationFloor));
     }
 
 }
