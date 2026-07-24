@@ -5,7 +5,6 @@ using TMPro;
 public class Task : MonoBehaviour
 {
     // ------------------------------------- Variables -------------------------------------
-    [SerializeField] private string  _taskName; // name of the task
     [SerializeField] private float  _taskTime; // time before the task overrides
     protected float  _taskTimeStamp; // time stamp used 
     protected bool _taskStarted = false;
@@ -13,29 +12,32 @@ public class Task : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI _TimerReference; // reference to the timer/window/popup whaterver created by this task
 
-    public  delegate void TaskEvent(string i);
+    public  delegate void TaskEvent(GameObject obj);
+    public static event TaskEvent OnTaskCreated;
     public static event TaskEvent OnTaskUpdate;
     public static event TaskEvent OnTaskFinished;
     public static event TaskEvent OnTaskOvertime;
 
 
     // ------------------------------------- Functions -------------------------------------
-    void Start()
+    protected virtual void Start()
     {
         // subscribe to events
 
         // Starts when instantiated
+
+        OnTaskCreated?.Invoke(this.gameObject);
         StartTask();
 
     }
 
-    public void OnDestroy()
+    protected virtual void OnDestroy()
     {
         // unsubscribe from events
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         if (Time.time > _taskTimeStamp)
         {
@@ -55,20 +57,19 @@ public class Task : MonoBehaviour
 
     public virtual void StartTask()
     {
-        _taskName = name;
         Debug.Log("Created Task");
         _taskTimeStamp = Time.time + _taskTime;
     }
 
     public virtual void CloseTask()
     {
-        OnTaskFinished?.Invoke(_taskName);
-        Destroy(this);
+        OnTaskFinished?.Invoke(this.gameObject);
+        Destroy(this.gameObject);
     }
 
     public virtual void StartOverride()
     {
-        OnTaskOvertime?.Invoke(_taskName);
+        OnTaskOvertime?.Invoke(this.gameObject);
         _override = true;
     }
 

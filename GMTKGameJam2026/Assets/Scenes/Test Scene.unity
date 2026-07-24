@@ -922,6 +922,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 3601318696989553309, guid: 7fb864a19bca543429b0901fcb70fd37, type: 3}
+      propertyPath: m_text
+      value: Feed Cuthulu Virgin BLood
+      objectReference: {fileID: 0}
+    - target: {fileID: 3601318696989553309, guid: 7fb864a19bca543429b0901fcb70fd37, type: 3}
+      propertyPath: m_fontSize
+      value: 45.45
+      objectReference: {fileID: 0}
     - target: {fileID: 3878542795343385045, guid: 7fb864a19bca543429b0901fcb70fd37, type: 3}
       propertyPath: m_Name
       value: Button
