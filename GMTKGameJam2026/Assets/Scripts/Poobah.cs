@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
-public class GameplayManager : MonoBehaviour
+public class Poobah : MonoBehaviour
 {
     [Header("Check for fast testing")]
     [SerializeField] private bool UsingTestParameters = false;
@@ -23,12 +23,13 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] private float _taskDeviationFloor = 5; // minimum time between tasks
 
     // main task variables
-    private Boolean mainTaskStarted = false;
+    private Boolean _mainTaskStarted = false;
     private float _mainTaskTimeStamp; // stamp for starting the main task
     [SerializeField] private float _mainTaskTimeSeconds = 60; // Time until the main task ends
     private float _mainTaskDelayTimeStamp; // stamp for when the main task stats counting down again
     [SerializeField] private float _mainTaskDelaySeconds = 15; // Time the main task delays until coninuing to count down
     private float _mainTaskSecondsLeft; // keeps track of the main task time left
+    private bool _mainTaskTimerRunStart;
 
 
     private Boolean _gameOver = false;
@@ -46,13 +47,13 @@ public class GameplayManager : MonoBehaviour
     public delegate void GameManagerEvent(float input);
     public static event GameManagerEvent OnMainTimerUpdate;
     public static event GameManagerEvent OnMainTaskDelayReset;
+    public static event GameManagerEvent OnMainTaskTimerStart;
     public static event GameManagerEvent OnGameOver;
 
 
 
 
     // ------------------------------------- Functions -------------------------------------
-
     #region Functions
     void Start()
     {
@@ -85,14 +86,17 @@ public class GameplayManager : MonoBehaviour
 
     void Update()
     {
-        if (mainTaskStarted && Time.time > _mainTaskDelayTimeStamp)
+        if (_mainTaskStarted && Time.time > _mainTaskDelayTimeStamp)
         {
             _mainTaskSecondsLeft -= Time.deltaTime;
             OnMainTimerUpdate?.Invoke(_mainTaskSecondsLeft);
+
+            if (!_mainTaskTimerRunStart)
+                MainTaskTimerStarted();
         }
 
         // end game checks
-        if (!_gameOver && mainTaskStarted)
+        if (!_gameOver && _mainTaskStarted)
         {
             if (Time.time > _shiftLengthMinutes * 60f + Time.time) EndGame("Game Over - shift finished with time to spare");
             if (_mainTaskSecondsLeft <= 0f) EndGame("Game Over - your countdown finished");
@@ -100,15 +104,23 @@ public class GameplayManager : MonoBehaviour
         
     }
 
+    private void MainTaskTimerStarted()
+    {
+        _mainTaskTimerRunStart = true;
+        OnMainTaskTimerStart?.Invoke(_mainTaskDelayTimeStamp);
+    }
 
     public void ResetMainTaskDelay()
     {
         _mainTaskDelayTimeStamp = Time.time + _mainTaskDelaySeconds;
+        _mainTaskTimerRunStart = false;
+
+        OnMainTaskDelayReset?.Invoke(_mainTaskDelayTimeStamp);
     }
 
     public void StartMainTask()
     {
-        mainTaskStarted = true;
+        _mainTaskStarted = true;
         ResetMainTaskDelay(); // start delay
         _mainTaskSecondsLeft = _mainTaskTimeSeconds; // set the dynamic var
 
