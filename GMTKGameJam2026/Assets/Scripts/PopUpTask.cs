@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class PopUpTask : Task
 {
-    [SerializeField] private float _taskTime = 15;
+    [SerializeField] private int _overrideClicksToClose = 10;
+    private int _clickCounter = 0;
 
     public PopUpTask(string input) : base(input)
     {
@@ -13,6 +14,8 @@ public class PopUpTask : Task
     protected override void Start()
     {
         // subscribe to stuff
+        base.Start();
+        
     }
 
     protected override void OnDestroy()
@@ -23,7 +26,7 @@ public class PopUpTask : Task
 
     protected override void Update()
     {
-        
+        base.Update();
     }
 
     public override void StartTask()
@@ -33,7 +36,20 @@ public class PopUpTask : Task
 
     public override void CloseTask()
     {
-        base.CloseTask();
+        if (_override)
+        {
+            if (_clickCounter < _overrideClicksToClose)
+            {
+                _clickCounter += 1;
+            } else
+            {
+                base.CloseTask();
+            }
+        } else
+        {
+            base.CloseTask();
+        }
+        
     }
 
     public override void StartOverride()

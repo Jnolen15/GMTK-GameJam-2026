@@ -1,17 +1,19 @@
 using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 
 public class Task : MonoBehaviour
 {
     // ------------------------------------- Variables -------------------------------------
-    [SerializeField] private float  _taskTime; // time before the task overrides
+    [SerializeField] protected float  _taskTime; // time before the task overrides
     protected float  _taskTimeStamp; // time stamp used 
     protected bool _taskStarted = false;
     protected private bool _override = false;
 
-    [SerializeField] private TextMeshProUGUI _TimerReference; // reference to the timer/window/popup whaterver created by this task
 
+    // references
+    [SerializeField] private TextMeshProUGUI _TimerReference; // reference to the timer/window/popup whaterver created by this task
     public  delegate void TaskEvent(GameObject obj);
     public static event TaskEvent OnTaskCreated;
     public static event TaskEvent OnTaskUpdate;
@@ -39,7 +41,7 @@ public class Task : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        if (Time.time > _taskTimeStamp)
+        if (!_override && Time.time > _taskTimeStamp)
         {
             StartOverride();
         } else
