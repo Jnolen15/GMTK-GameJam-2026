@@ -39,6 +39,7 @@ public class GameplayManager : MonoBehaviour
     // references
     public List<GameObject> _taskReferences = new List<GameObject>();
     [SerializeField] private Canvas _mainCanvas;
+    [SerializeField] private Transform _windowZone;
 
     // events
     public delegate void GameManagerEvent(float input);
@@ -117,7 +118,7 @@ public class GameplayManager : MonoBehaviour
     public void StartTask(int index)
     {
         // create new task
-        GameObject newTask = Instantiate(_taskReferences[0], _mainCanvas.transform);
+        GameObject newTask = Instantiate(_taskReferences[0], _windowZone);
 
         // add task to list
         _taskList.Add(newTask);

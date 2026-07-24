@@ -4,6 +4,8 @@ using UnityEngine.EventSystems;
 public class WindowControl : MonoBehaviour, IDragHandler, IBeginDragHandler
 {
     // =================== Refrences ===================
+    [SerializeField] private Transform _rootObj;
+
     private Canvas _canvas;
     private Camera _cam;
     private RectTransform _rectTransform;
@@ -47,7 +49,7 @@ public class WindowControl : MonoBehaviour, IDragHandler, IBeginDragHandler
     {
         if (RectTransformUtility.ScreenPointToLocalPointInRectangle(_rectTransform, eventData.position, _cam, out Vector2 localPoint))
         {
-            _winMan.MakeMeFavoriteChild(_rectTransform);
+            _winMan.MakeMeFavoriteChild(_rootObj);
 
             float halfHeight = (_rectTransform.rect.height / 2);
             float topZone = (halfHeight - 50);

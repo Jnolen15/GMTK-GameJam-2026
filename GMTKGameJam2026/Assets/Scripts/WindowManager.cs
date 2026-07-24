@@ -6,7 +6,6 @@ public class WindowManager : MonoBehaviour
     [SerializeField] private Transform _windowZone;
     [SerializeField] private Transform _taskElements;
     [SerializeField] private GameObject _taskTrayElementPref;
-    [SerializeField] private GameObject _testNewTask;
     [SerializeField] private TaskData _testNewTaskData;
     private Canvas _canvas;
 
@@ -16,32 +15,31 @@ public class WindowManager : MonoBehaviour
     {
         _canvas = GetComponent<Canvas>();
 
-        // Subscribe to task creation method
-
-        // TEST
-        CreateTaskTrayElement(_testNewTask);
+        Task.OnTaskCreated += CreateTaskTrayElement;
     }
 
     private void OnDestroy()
     {
-        // Unsubscribe to task creation method
+        Task.OnTaskCreated -= CreateTaskTrayElement;
     }
     #endregion
 
     // =================== Function ===================
     #region Function
-    private void CreateTaskTrayElement(GameObject newTask)
+    private void CreateTaskTrayElement(Task newTask)
     {
         TaskTrayElement tte = Instantiate(_taskTrayElementPref, _taskElements).GetComponent<TaskTrayElement>();
-        tte.Setup(newTask, _testNewTaskData);
+        tte.Setup(newTask);
 
-        WindowControl windowCont = newTask.GetComponent<WindowControl>();
+        WindowControl windowCont = newTask.GetTaskUIWindowControl();
         windowCont.SetTrayElement(tte);
     }
 
-    public void MakeMeFavoriteChild(RectTransform rectTrans)
+    public void MakeMeFavoriteChild(Transform targetTrans)
     {
-        rectTrans.SetAsLastSibling();
+        Debug.Log(targetTrans.name + " is my new fav!", targetTrans.gameObject);
+
+        targetTrans.SetAsLastSibling();
     }
     #endregion
 }

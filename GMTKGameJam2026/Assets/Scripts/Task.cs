@@ -13,8 +13,10 @@ public class Task : MonoBehaviour
 
 
     // references
+    [SerializeField] private TaskData _taskData;
+    [SerializeField] private GameObject _rootUI;
     [SerializeField] private TextMeshProUGUI _TimerReference; // reference to the timer/window/popup whaterver created by this task
-    public  delegate void TaskEvent(GameObject obj);
+    public delegate void TaskEvent(Task obj);
     public static event TaskEvent OnTaskCreated;
     public static event TaskEvent OnTaskUpdate;
     public static event TaskEvent OnTaskFinished;
@@ -28,7 +30,7 @@ public class Task : MonoBehaviour
 
         // Starts when instantiated
 
-        OnTaskCreated?.Invoke(this.gameObject);
+        OnTaskCreated?.Invoke(this);
         StartTask();
 
     }
@@ -65,15 +67,18 @@ public class Task : MonoBehaviour
 
     public virtual void CloseTask()
     {
-        OnTaskFinished?.Invoke(this.gameObject);
+        OnTaskFinished?.Invoke(this);
         Destroy(this.gameObject);
     }
 
     public virtual void StartOverride()
     {
-        OnTaskOvertime?.Invoke(this.gameObject);
+        OnTaskOvertime?.Invoke(this);
         _override = true;
     }
 
-
+    // Helpers
+    public GameObject GetTaskUIObject() { return _rootUI; }
+    public WindowControl GetTaskUIWindowControl() { return _rootUI.GetComponent<WindowControl>(); }
+    public TaskData GetTaskData() { return _taskData; }
 }
