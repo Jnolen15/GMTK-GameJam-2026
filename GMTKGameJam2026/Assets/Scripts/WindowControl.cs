@@ -8,6 +8,7 @@ public class WindowControl : MonoBehaviour, IDragHandler, IBeginDragHandler
     private Camera _cam;
     private RectTransform _rectTransform;
     private WindowManager _winMan;
+    private TaskTrayElement _trayElement;
     private bool _moveable;
 
     // =================== Setup ===================
@@ -19,13 +20,18 @@ public class WindowControl : MonoBehaviour, IDragHandler, IBeginDragHandler
         _rectTransform = GetComponent<RectTransform>();
         _winMan = GetComponentInParent<WindowManager>();
     }
+
+    public void SetTrayElement(TaskTrayElement trayElement)
+    {
+        _trayElement = trayElement;
+    }
     #endregion
 
     // =================== Function ===================
     #region Function
-    private void Update()
+    public void ToggleWindow()
     {
-        
+        _trayElement.ToggleTask();
     }
     #endregion
 
@@ -45,7 +51,6 @@ public class WindowControl : MonoBehaviour, IDragHandler, IBeginDragHandler
 
             float halfHeight = (_rectTransform.rect.height / 2);
             float topZone = (halfHeight - 50);
-            Debug.Log($"Mouse Position inside UI: {localPoint} {halfHeight} {topZone}");
 
             if (localPoint.y > topZone)
                 _moveable = true;
