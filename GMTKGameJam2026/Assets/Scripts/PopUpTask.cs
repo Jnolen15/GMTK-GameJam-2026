@@ -3,14 +3,14 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System.Linq;
 
 public class PopUpTask : Task
 {
     // ------------------------------------- Variables -------------------------------------
 
-    // References
-    public List<Button> ButtonList = new List<Button>();
-
+    // references 
+    [SerializeField] private GameObject _fakeButtons;
 
     // ------------------------------------- Functions -------------------------------------
     public PopUpTask(string input) : base(input)
@@ -22,7 +22,10 @@ public class PopUpTask : Task
     {
         // subscribe to stuff
         base.Start();
-        
+        List<Button> ButtonList = _fakeButtons.GetComponentsInChildren<Button>().ToList<Button>();
+
+        // pick random button to be "real"
+        ButtonList[Random.Range(0, ButtonList.Count - 1)].onClick.AddListener(delegate { CloseTask(true); });
     }
 
     protected override void OnDestroy()
