@@ -4,28 +4,31 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 
-public class PopUpTask : Task
+public class AnswerEmailTask : Task
 {
     // ------------------------------------- Variables -------------------------------------
 
+    [SerializeField] private int _minCharacterCount;
+
     // references 
-    [SerializeField] private GameObject _fakeButtons;
+    [SerializeField] private TextMeshProUGUI _textInput;
+    [SerializeField] private Button _sendButton;
 
     // ------------------------------------- Functions -------------------------------------
-    public PopUpTask(string input) : base(input)
+    public AnswerEmailTask(string input) : base(input)
     {
 
     }
-    
+
     protected override void Start()
     {
         // subscribe to stuff
         base.Start();
-        List<Button> ButtonList = _fakeButtons.GetComponentsInChildren<Button>().ToList<Button>();
 
-        // pick random button to be "real"
-        ButtonList[Random.Range(0, ButtonList.Count)].onClick.AddListener(delegate { CloseTask(true); });
+        // adding send attempt event to button
+        _sendButton.onClick.AddListener(delegate { CloseTask(true); });
     }
 
     protected override void OnDestroy()
@@ -34,6 +37,15 @@ public class PopUpTask : Task
         base.OnDestroy();
     }
 
+    private void SendEmail() { 
+        if (_textInput.text.Length >= _minCharacterCount)
+        {
+            CloseTask(_taskPassed);
+        } else
+        {
+            Debug.Log("Not enough characters to send email");
+        }
+    }
 
     protected override void Update()
     {
@@ -48,6 +60,6 @@ public class PopUpTask : Task
     public override void CloseTask(bool passed)
     {
         base.CloseTask(passed);
-        
+
     }
 }

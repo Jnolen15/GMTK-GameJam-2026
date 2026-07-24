@@ -79,7 +79,7 @@ public class GameplayManager : MonoBehaviour
     {
         _shiftLengthMinutes = 0.5f;
         _mainTaskDelaySeconds = 2;
-        _mainTaskTimeSeconds = 5;
+        _mainTaskTimeSeconds = 15;
         _taskDeviationSeconds = 3;
         _taskDeviationFloor = 1;
     }
@@ -133,7 +133,8 @@ public class GameplayManager : MonoBehaviour
     public void StartTask(int index)
     {
         // create new task
-        GameObject newTask = Instantiate(_taskReferences[0], _windowZone);
+        GameObject newTask = Instantiate(_taskReferences[index], _windowZone);
+        
 
         // add task to list
         _taskList.Add(newTask);
@@ -160,8 +161,9 @@ public class GameplayManager : MonoBehaviour
 
         if(!_gameOver)
         {
-            // start the task
-            StartTask(0);
+            // start a random task
+            StartTask(UnityEngine.Random.Range(0, _taskReferences.Count));
+            
 
             // loop and start the next task with less time, floors at _minSecondsBetweenTasks
             if (!_gameOver) StartCoroutine(TaskTimer(time * _taskDeviationScaler > _taskDeviationFloor ? time * _taskDeviationScaler : _taskDeviationFloor));
