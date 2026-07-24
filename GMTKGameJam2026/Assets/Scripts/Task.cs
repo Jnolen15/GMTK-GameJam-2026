@@ -1,6 +1,5 @@
 using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
-using TMPro;
 using Unity.VisualScripting;
 
 public class Task : MonoBehaviour
@@ -15,7 +14,7 @@ public class Task : MonoBehaviour
     // references
     [SerializeField] private TaskData _taskData;
     [SerializeField] private GameObject _rootUI;
-    [SerializeField] private TextMeshProUGUI _TimerReference; // reference to the timer/window/popup whaterver created by this task
+    [SerializeField] private WindowControl _windowControl; // reference to the timer/window/popup whaterver created by this task
     public delegate void TaskEvent(Task obj);
     public static event TaskEvent OnTaskCreated;
     public static event TaskEvent OnTaskUpdate;
@@ -48,7 +47,8 @@ public class Task : MonoBehaviour
             StartOverride();
         } else
         {
-            _TimerReference.text = (_taskTimeStamp - Time.time).ToString("#.00");
+            float curTime = _taskTimeStamp - Time.time;
+            _windowControl.UpdateTimer(curTime);
         }
     }
 

@@ -1,10 +1,13 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using TMPro;
+using DG.Tweening;
 
 public class WindowControl : MonoBehaviour, IDragHandler, IBeginDragHandler
 {
     // =================== Refrences ===================
     [SerializeField] private Transform _rootObj;
+    [SerializeField] private TextMeshProUGUI _timerText;
 
     private Canvas _canvas;
     private Camera _cam;
@@ -34,6 +37,20 @@ public class WindowControl : MonoBehaviour, IDragHandler, IBeginDragHandler
     public void ToggleWindow()
     {
         _trayElement.ToggleTask();
+    }
+
+    public void UpdateTimer(float curTime)
+    {
+        int minutes = Mathf.FloorToInt(curTime / 60);
+        int seconds = Mathf.FloorToInt(curTime % 60);
+        _timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+
+        if (curTime < 10)
+            _timerText.color = Color.red;
+        else if (curTime < 30)
+            _timerText.color = Color.orange;
+        else if (curTime < 60)
+            _timerText.color = Color.yellow;
     }
     #endregion
 
