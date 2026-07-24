@@ -8,7 +8,7 @@ public class Task : MonoBehaviour
     [SerializeField] protected float  _taskTime; // time before the task overrides
     protected float  _taskTimeStamp; // time stamp used 
     protected bool _taskStarted = false;
-    protected private bool _override = false;
+    protected bool _taskPassed = true;
 
 
     // references
@@ -19,7 +19,7 @@ public class Task : MonoBehaviour
     public static event TaskEvent OnTaskCreated;
     public static event TaskEvent OnTaskUpdate;
     public static event TaskEvent OnTaskFinished;
-    public static event TaskEvent OnTaskOvertime;
+    public static event TaskEvent OnTaskFailed;
 
 
     // ------------------------------------- Functions -------------------------------------
@@ -42,11 +42,14 @@ public class Task : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        if (!_override && Time.time > _taskTimeStamp)
+        if (Time.time > _taskTimeStamp)
         {
-            StartOverride();
+            // fail and clos task
+            _taskPassed = true;
+            CloseTask(_taskPassed);
         } else
         {
+            // update timer
             float curTime = _taskTimeStamp - Time.time;
             _windowControl.UpdateTimer(curTime);
         }
@@ -65,17 +68,19 @@ public class Task : MonoBehaviour
         _taskTimeStamp = Time.time + _taskTime;
     }
 
-    public virtual void CloseTask()
+
+    public virtual void CloseTask(bool passed)
     {
-        OnTaskFinished?.Invoke(this);
+        if (passed)
+        {
+            OnTaskFinished?.Invoke(this);
+        } else
+        {
+            OnTaskFailed?.Invoke(this);
+        }
         Destroy(this.gameObject);
     }
 
-    public virtual void StartOverride()
-    {
-        OnTaskOvertime?.Invoke(this);
-        _override = true;
-    }
 
     // Helpers
     public GameObject GetTaskUIObject() { return _rootUI; }

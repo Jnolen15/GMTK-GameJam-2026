@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using System;
 using UnityEngine.EventSystems;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
 public class GameplayManager : MonoBehaviour
 {
@@ -56,6 +57,8 @@ public class GameplayManager : MonoBehaviour
     void Start()
     {
         // subscribe to events
+
+
 
         if (UsingTestParameters) UseTestParameters();
 
@@ -129,6 +132,10 @@ public class GameplayManager : MonoBehaviour
         _gameOver = true;
         OnGameOver?.Invoke(0);
         Debug.Log(text);
+    }
+
+    private void ReceiveFailedTask(Task task) { 
+        // code for failed task goes here
     }
 
     #endregion

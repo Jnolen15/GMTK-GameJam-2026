@@ -1,11 +1,18 @@
 using JetBrains.Annotations;
+using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class PopUpTask : Task
 {
-    [SerializeField] private int _overrideClicksToClose = 10;
-    private int _clickCounter = 0;
+    // ------------------------------------- Variables -------------------------------------
 
+    // References
+    public List<Button> ButtonList = new List<Button>();
+
+
+    // ------------------------------------- Functions -------------------------------------
     public PopUpTask(string input) : base(input)
     {
 
@@ -34,26 +41,9 @@ public class PopUpTask : Task
         base.StartTask();
     }
 
-    public override void CloseTask()
+    public override void CloseTask(bool passed)
     {
-        if (_override)
-        {
-            if (_clickCounter < _overrideClicksToClose)
-            {
-                _clickCounter += 1;
-            } else
-            {
-                base.CloseTask();
-            }
-        } else
-        {
-            base.CloseTask();
-        }
+        base.CloseTask(passed);
         
-    }
-
-    public override void StartOverride()
-    {
-        base.StartOverride();
     }
 }
