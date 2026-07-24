@@ -11,6 +11,7 @@ public class PopUpTask : Task
 
     // references 
     [SerializeField] private GameObject _fakeButtons;
+    [SerializeField] private List<GameObject> _ads = new List<GameObject>();
 
     // ------------------------------------- Functions -------------------------------------
     public PopUpTask(string input) : base(input)
@@ -26,6 +27,8 @@ public class PopUpTask : Task
 
         // pick random button to be "real"
         ButtonList[Random.Range(0, ButtonList.Count)].onClick.AddListener(delegate { CloseTask(true); });
+
+        _ads[Random.Range(0, _ads.Count)].SetActive(true);
     }
 
     protected override void OnDestroy()
