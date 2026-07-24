@@ -12,16 +12,16 @@ public class MainTaskTimerUI : MonoBehaviour
     #region Setup
     void Start()
     {
-        Poobah.OnMainTimerUpdate += UpdateText;
-        Poobah.OnMainTaskTimerStart += MainTimerResume;
-        Poobah.OnMainTaskDelayReset += MainTimerPause;
+        GameplayManager.OnMainTimerUpdate += UpdateText;
+        GameplayManager.OnMainTaskTimerStart += MainTimerResume;
+        GameplayManager.OnMainTaskDelayReset += MainTimerPause;
     }
 
     private void OnDestroy()
     {
-        Poobah.OnMainTimerUpdate -= UpdateText;
-        Poobah.OnMainTaskTimerStart -= MainTimerResume;
-        Poobah.OnMainTaskDelayReset -= MainTimerPause;
+        GameplayManager.OnMainTimerUpdate -= UpdateText;
+        GameplayManager.OnMainTaskTimerStart -= MainTimerResume;
+        GameplayManager.OnMainTaskDelayReset -= MainTimerPause;
     }
     #endregion
 

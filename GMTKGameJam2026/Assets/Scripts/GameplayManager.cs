@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
-public class Poobah : MonoBehaviour
+public class GameplayManager : MonoBehaviour
 {
     [Header("Check for fast testing")]
     [SerializeField] private bool UsingTestParameters = false;
