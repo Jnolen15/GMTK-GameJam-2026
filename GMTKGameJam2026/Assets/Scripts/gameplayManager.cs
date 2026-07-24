@@ -5,6 +5,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using System;
 using UnityEngine.EventSystems;
+using System.Runtime.CompilerServices;
 
 public class GameplayManager : MonoBehaviour
 {
@@ -30,9 +31,14 @@ public class GameplayManager : MonoBehaviour
 
 
     private Boolean _gameOver = false;
+
     
     // lists
-    private List<Task> taskList = new List<Task>();
+    private List<GameObject> _taskList = new List<GameObject>();
+
+    // references
+    public List<GameObject> _taskReferences = new List<GameObject>();
+    [SerializeField] private Canvas _mainCanvas;
 
     // events
     public delegate void GameManagerEvent(float input);
@@ -108,16 +114,13 @@ public class GameplayManager : MonoBehaviour
     }
 
 
-    public void StartTask(string name)
+    public void StartTask(int index)
     {
         // create new task
-
-        // attatch it to this gameobject
-        Task tempTask = this.gameObject.AddComponent<Task>();
-        tempTask.InitializeTask(name);
+        GameObject newTask = Instantiate(_taskReferences[0], _mainCanvas.transform);
 
         // add task to list
-        taskList.Add(tempTask);
+        _taskList.Add(newTask);
     }
 
     public void EndGame(string text)
@@ -127,8 +130,6 @@ public class GameplayManager : MonoBehaviour
         Debug.Log(text);
     }
 
-
-
     #endregion
 
     // ------------------------------------- Coroutines -------------------------------------
@@ -137,11 +138,14 @@ public class GameplayManager : MonoBehaviour
         // wait the alloted time to start thetask
         yield return new WaitForSeconds(time);
 
-        // start the task
-        StartTask("Template Task");
+        if(!_gameOver)
+        {
+            // start the task
+            StartTask(0);
 
-        // loop and start the next task with less time, floors at _minSecondsBetweenTasks
-        StartCoroutine(TaskTimer(time * _taskDeviationScaler > _taskDeviationFloor ? time * _taskDeviationScaler : _taskDeviationFloor));
+            // loop and start the next task with less time, floors at _minSecondsBetweenTasks
+            if (!_gameOver) StartCoroutine(TaskTimer(time * _taskDeviationScaler > _taskDeviationFloor ? time * _taskDeviationScaler : _taskDeviationFloor));
+        }
     }
 
 }

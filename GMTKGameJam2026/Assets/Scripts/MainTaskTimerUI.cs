@@ -8,6 +8,7 @@ public class MainTaskTimerUI : MonoBehaviour
     // ------------------------------------- Variables -------------------------------------
 
 
+    [SerializeField] private string TaskName = "Main";
 
     private TextMeshProUGUI _textBox;
 
