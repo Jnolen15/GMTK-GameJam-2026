@@ -7,6 +7,10 @@ using System;
 using UnityEngine.EventSystems;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using UnityEngine.UI;
+using UnityEditor.Rendering;
+using Unity.Mathematics;
+using UnityEditor.VersionControl;
 
 public class GameplayManager : MonoBehaviour
 {
@@ -134,8 +138,14 @@ public class GameplayManager : MonoBehaviour
     {
         // create new task
         GameObject newTask = Instantiate(_taskReferences[index], _windowZone);
-        
+        // move it to a random place on the screen
 
+        RectTransform rt = _windowZone.GetComponent<RectTransform>();
+        float x = rt.rect.width/4;
+        float y = -rt.rect.height/4;
+        Vector2 v = new Vector2(UnityEngine.Random.Range(-x, x), UnityEngine.Random.Range(-y, y));
+        newTask.GetComponent<RectTransform>().anchoredPosition = v;
+         
         // add task to list
         _taskList.Add(newTask);
     }
