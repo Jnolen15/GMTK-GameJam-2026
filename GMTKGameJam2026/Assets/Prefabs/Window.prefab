@@ -268,6 +268,7 @@ GameObject:
   - component: {fileID: 7916556244288135898}
   - component: {fileID: 1009933350209449769}
   - component: {fileID: 9068221551262941479}
+  - component: {fileID: 8053208875337138565}
   m_Layer: 5
   m_Name: Window
   m_TagString: Untagged
@@ -334,3 +335,17 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8053208875337138565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5293090614268326652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b195abfaf4fe69e4b893aa977d368df3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WindowControl
+  _canvas: {fileID: 0}
+  _rectTransform: {fileID: 0}
