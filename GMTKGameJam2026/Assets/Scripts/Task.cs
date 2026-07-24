@@ -32,6 +32,7 @@ public class Task : MonoBehaviour
         OnTaskCreated?.Invoke(this);
         StartTask();
 
+        _windowControl.SetWindowName(_taskData.GetTaskName());
     }
 
     protected virtual void OnDestroy()

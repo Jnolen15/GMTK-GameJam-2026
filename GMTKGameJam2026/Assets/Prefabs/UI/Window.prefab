@@ -498,6 +498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WindowControl
   _rootObj: {fileID: 7916556244288135898}
+  _windowName: {fileID: 8953389954103727947}
   _timerText: {fileID: 7072847390532715854}
 --- !u!1 &6841572546737183296
 GameObject:

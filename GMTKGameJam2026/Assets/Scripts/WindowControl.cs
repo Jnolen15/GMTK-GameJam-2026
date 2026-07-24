@@ -7,6 +7,7 @@ public class WindowControl : MonoBehaviour, IDragHandler, IBeginDragHandler
 {
     // =================== Refrences ===================
     [SerializeField] private Transform _rootObj;
+    [SerializeField] private TextMeshProUGUI _windowName;
     [SerializeField] private TextMeshProUGUI _timerText;
 
     private Canvas _canvas;
@@ -29,6 +30,11 @@ public class WindowControl : MonoBehaviour, IDragHandler, IBeginDragHandler
     public void SetTrayElement(TaskTrayElement trayElement)
     {
         _trayElement = trayElement;
+    }
+
+    public void SetWindowName(string winName)
+    {
+        _windowName.text = winName;
     }
     #endregion
 
@@ -58,8 +64,13 @@ public class WindowControl : MonoBehaviour, IDragHandler, IBeginDragHandler
     #region Interface
     public void OnDrag(PointerEventData eventData)
     {
-        if(_moveable)
-            _rectTransform.anchoredPosition += eventData.delta / _canvas.scaleFactor;
+        if (_moveable)
+        {
+            Vector3 mousePos = _cam.ScreenToViewportPoint(eventData.position);
+
+            if(mousePos.x > 0 && mousePos.x < 1 && mousePos.y > 0.1 && mousePos.y < 1)
+                _rectTransform.anchoredPosition += eventData.delta / _canvas.scaleFactor;
+        }
     }
 
     public void OnBeginDrag(PointerEventData eventData)
