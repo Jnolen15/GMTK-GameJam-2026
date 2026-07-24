@@ -86,4 +86,5 @@ public class Task : MonoBehaviour
     public GameObject GetTaskUIObject() { return _rootUI; }
     public WindowControl GetTaskUIWindowControl() { return _rootUI.GetComponent<WindowControl>(); }
     public TaskData GetTaskData() { return _taskData; }
+    public float GetCurrentTaskTimer() { return _taskTimeStamp - Time.time; }
 }
