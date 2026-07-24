@@ -28,7 +28,7 @@ public class AnswerEmailTask : Task
         base.Start();
 
         // adding send attempt event to button
-        _sendButton.onClick.AddListener(delegate { CloseTask(true); });
+        _sendButton.onClick.AddListener(delegate { SendEmail(); });
     }
 
     protected override void OnDestroy()

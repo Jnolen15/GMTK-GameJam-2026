@@ -624,6 +624,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3129650298324071144, guid: d7c74bcf8b7f55d45b418ff7dc78b562, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -104.99994
+      objectReference: {fileID: 0}
     - target: {fileID: 5984271687826892364, guid: d7c74bcf8b7f55d45b418ff7dc78b562, type: 3}
       propertyPath: m_Name
       value: BaseCanvas
@@ -663,7 +667,7 @@ PrefabInstance:
       objectReference: {fileID: 1216458524}
     - target: {fileID: 6397256351504453203, guid: 214a9393570f9684fa061b31abf7f1a4, type: 3}
       propertyPath: UsingTestParameters
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6397256351504453203, guid: 214a9393570f9684fa061b31abf7f1a4, type: 3}
       propertyPath: _taskReferences.Array.size
