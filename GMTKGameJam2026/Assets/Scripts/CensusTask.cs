@@ -20,6 +20,7 @@ public class CensusTask : Task
     [SerializeField] private PeopleSO _peopleSO; 
     [SerializeField] private Button _submitButton;
     [SerializeField] private TextMeshProUGUI _exclusionTextBox;
+    [SerializeField] private GameObject _faliureWarning;
     
     public enum Exclusion
     {
@@ -150,6 +151,7 @@ public class CensusTask : Task
     private void FailSubmission()
     {
         // try again message goes here
+        _faliureWarning.SetActive(true);
         GenerateCensus();
     }
 

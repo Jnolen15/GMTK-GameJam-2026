@@ -15,7 +15,7 @@ public class PeopleSO : ScriptableObject
 
 
     // =================== Functions ===================
-    public string GetName() { Debug.Log(_names.Count); return _names[Random.Range(0, _names.Count)]; }
+    public string GetName() { return _names[Random.Range(0, _names.Count)]; }
     public int GetAge() { return Random.Range(_minAge, _maxAge); }
 
     public string GetGender() { return _genders[Random.Range(0, _genders.Count)]; }
