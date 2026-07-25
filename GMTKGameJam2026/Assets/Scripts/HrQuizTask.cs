@@ -119,6 +119,10 @@ public class HrQuizTask : Task
 
     public void WrongAnswer()
     {
+        _questionIndex = 0;
+        LoadNextQuestion();
+
+        UpdateProgress();
         _incorrectWarning.SetActive(true);
     }
 

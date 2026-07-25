@@ -46,20 +46,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   UsingTestParameters: 0
   gameStartTime: 0
-  _shiftLengthMinutes: 30
+  _shiftLengthMinutes: 8
   _taskDeviationSeconds: 15
   _taskDeviationScaler: 0.9
   _taskDeviationFloor: 5
   _mainTaskTimeSeconds: 60
   _mainTaskDelaySeconds: 15
   _introTasks:
+  - _spawnTime: 1
+    _taskPref: {fileID: 2487628264025418284, guid: 5e6937f07b08e9f418301c77fd5a6972, type: 3}
   - _spawnTime: 2
     _taskPref: {fileID: 2487628264025418284, guid: 00c9725ef40978844817c9914b5d6f35, type: 3}
   - _spawnTime: 5
     _taskPref: {fileID: 2487628264025418284, guid: 38562164732d74a43a1c616bc3ed2fa4, type: 3}
   - _spawnTime: 10
     _taskPref: {fileID: 2487628264025418284, guid: e057d9e6919897e47abba544df8ff10a, type: 3}
-  - _spawnTime: 20
-    _taskPref: {fileID: 2487628264025418284, guid: 5e6937f07b08e9f418301c77fd5a6972, type: 3}
   _mainCanvas: {fileID: 0}
   _windowZone: {fileID: 0}

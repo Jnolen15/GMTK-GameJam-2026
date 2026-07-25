@@ -574,6 +574,7 @@ MonoBehaviour:
   _taskElements: {fileID: 3129650298324071144}
   _taskTrayElementPref: {fileID: 2534727261267893005, guid: 6c516313ba29e374d8e51adc05cf4416, type: 3}
   _testNewTaskData: {fileID: 11400000, guid: e62e3e87100d06c48a43cf4af7b76482, type: 2}
+  _clock: {fileID: 2412547357550705001}
 --- !u!1 &6733811184060817023
 GameObject:
   m_ObjectHideFlags: 0
