@@ -13,6 +13,7 @@ public class WindowManager : MonoBehaviour
 
     private List<TaskTrayElement> _trayElementList = new List<TaskTrayElement>();
     private Canvas _canvas;
+    private float _gameStartTime;
 
     // =================== Setup ===================
     #region Setup
@@ -20,6 +21,7 @@ public class WindowManager : MonoBehaviour
     {
         _canvas = GetComponent<Canvas>();
 
+        GameplayManager.OnGameTimerStart += SetGameStart;
         Task.OnTaskCreated += CreateTaskTrayElement;
         Task.OnTaskFinished += RemoveTaskTrayElement;
         Task.OnTaskFailed += RemoveTaskTrayElement;
@@ -27,9 +29,15 @@ public class WindowManager : MonoBehaviour
 
     private void OnDestroy()
     {
+        GameplayManager.OnGameTimerStart -= SetGameStart;
         Task.OnTaskCreated -= CreateTaskTrayElement;
         Task.OnTaskFinished -= RemoveTaskTrayElement;
         Task.OnTaskFailed -= RemoveTaskTrayElement;
+    }
+
+    private void SetGameStart(float startTime)
+    {
+        _gameStartTime = startTime;
     }
     #endregion
 
@@ -37,12 +45,13 @@ public class WindowManager : MonoBehaviour
     #region Function
     private void Update()
     {
-        UpdateClock();
+        if(_gameStartTime != 0)
+            UpdateClock();
     }
 
     private void UpdateClock()
     {
-        float timeElapsed = Time.time;
+        float timeElapsed = Time.time - _gameStartTime;
 
         int hour = 9 + (int)(timeElapsed / 60);
         int minutes = (int)(timeElapsed % 60);
@@ -53,7 +62,7 @@ public class WindowManager : MonoBehaviour
             dayHalf = "PM";
         }
 
-        _clock.text = string.Format("{0:00}:{1:00} " + dayHalf, hour, minutes);
+        _clock.text = string.Format("{0}:{1:00} " + dayHalf, hour, minutes);
     }
 
     private void CreateTaskTrayElement(Task newTask)

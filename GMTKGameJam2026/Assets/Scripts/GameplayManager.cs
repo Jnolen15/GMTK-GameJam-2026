@@ -10,7 +10,7 @@ public class GameplayManager : MonoBehaviour
 
     // ------------------------------------- Variables -------------------------------------
     [Header("Variables")]
-    [SerializeField] public float gameStartTime = 0; // keeps track of when the game "starts"
+    [SerializeField] public float _gameStartTime = 0; // keeps track of when the game "starts"
     
     [SerializeField] private float _shiftLengthMinutes = 30; // longest possible time the game can run
     [SerializeField] private float _taskDeviationSeconds = 15; // time between giving the player tasks
@@ -42,6 +42,7 @@ public class GameplayManager : MonoBehaviour
 
     // events
     public delegate void GameManagerEvent(float input);
+    public static event GameManagerEvent OnGameTimerStart;
     public static event GameManagerEvent OnMainTimerUpdate;
     public static event GameManagerEvent OnMainTaskDelayReset;
     public static event GameManagerEvent OnMainTaskTimerStart;
@@ -59,13 +60,11 @@ public class GameplayManager : MonoBehaviour
     #region Functions
     void Start()
     {
-        // subscribe to events
-
-
-
         if (UsingTestParameters) UseTestParameters();
 
-        gameStartTime = Time.time;
+        _gameStartTime = Time.time;
+        OnGameTimerStart?.Invoke(_gameStartTime);
+
         StartCoroutine(TaskTimer(_taskDeviationSeconds));
 
         StartMainTask();
@@ -91,12 +90,12 @@ public class GameplayManager : MonoBehaviour
         // Intro Tasks
         if(_introTaskIndex < _introTasks.Count)
         {
-            if (_introTasks[_introTaskIndex]._spawnTime < Time.time)
+            if (_introTasks[_introTaskIndex]._spawnTime < GetAdjustedGameTime())
                 SpawnIntroTask();
         }
 
         // Run main task timer
-        if (_mainTaskStarted && Time.time > _mainTaskDelayTimeStamp)
+        if (_mainTaskStarted && GetAdjustedGameTime() > _mainTaskDelayTimeStamp)
         {
             _mainTaskSecondsLeft -= Time.deltaTime;
             OnMainTimerUpdate?.Invoke(_mainTaskSecondsLeft);
@@ -108,9 +107,14 @@ public class GameplayManager : MonoBehaviour
         // end game checks
         if (!_gameOver && _mainTaskStarted)
         {
-            if (Time.time > _shiftLengthMinutes * 60f + Time.time) EndGame("Game Over - shift finished with time to spare");
+            if (GetAdjustedGameTime() > _shiftLengthMinutes * 60f) EndGame("Game Over - shift finished with time to spare");
             if (_mainTaskSecondsLeft <= 0f) EndGame("Game Over - your countdown finished");
         }
+    }
+
+    public float GetAdjustedGameTime()
+    {
+        return Time.time - _gameStartTime;
     }
 
     private void MainTaskTimerStarted()
@@ -121,7 +125,7 @@ public class GameplayManager : MonoBehaviour
 
     public void ResetMainTaskDelay()
     {
-        _mainTaskDelayTimeStamp = Time.time + _mainTaskDelaySeconds;
+        _mainTaskDelayTimeStamp = GetAdjustedGameTime() + _mainTaskDelaySeconds;
         _mainTaskTimerRunStart = false;
 
         OnMainTaskDelayReset?.Invoke(_mainTaskDelayTimeStamp);
