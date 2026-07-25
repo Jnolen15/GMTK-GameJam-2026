@@ -1,16 +1,7 @@
-using System.Threading;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
-using Unity.VisualScripting;
 using System;
-using UnityEngine.EventSystems;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
-using UnityEngine.UI;
-using UnityEditor.Rendering;
-using Unity.Mathematics;
-using UnityEditor.VersionControl;
 
 public class GameplayManager : MonoBehaviour
 {
@@ -138,8 +129,11 @@ public class GameplayManager : MonoBehaviour
     {
         // create new task
         GameObject newTask = Instantiate(_taskReferences[index], _windowZone);
-        // move it to a random place on the screen
 
+        // display hint if first time
+        newTask.GetComponent<Task>().ShowHint();
+
+        // move it to a random place on the screen
         RectTransform rt = _windowZone.GetComponent<RectTransform>();
         float x = rt.rect.width/4;
         float y = -rt.rect.height/4;

@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e03000045016a114e844a12442264fbf, type: 3}
-  m_Name: MessengerTask
+  m_Name: PopupAdTD
   m_EditorClassIdentifier: Assembly-CSharp::TaskData
-  _taskName: Messenger
+  _taskName: Offer for you!
   _taskIcon: {fileID: 21300000, guid: 31353c7b1a0deea43ba3a4cd33c9aeca, type: 3}
   _taskIconMat: {fileID: 2100000, guid: e00edde357774e04fb915fd7d1d7fcfe, type: 2}
+  _taskHint: Close the AD!

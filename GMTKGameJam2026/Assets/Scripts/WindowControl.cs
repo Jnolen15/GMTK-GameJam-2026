@@ -9,6 +9,7 @@ public class WindowControl : MonoBehaviour, IDragHandler, IBeginDragHandler
     [SerializeField] private Transform _rootObj;
     [SerializeField] private TextMeshProUGUI _windowName;
     [SerializeField] private TextMeshProUGUI _timerText;
+    [SerializeField] private HintPopup _hint;
 
     private Canvas _canvas;
     private Camera _cam;
@@ -35,6 +36,12 @@ public class WindowControl : MonoBehaviour, IDragHandler, IBeginDragHandler
     public void SetWindowName(string winName)
     {
         _windowName.text = winName;
+    }
+    
+    public void SetWindowHint(string hintText)
+    {
+        _hint.gameObject.SetActive(true);
+        _hint.Setup(hintText);
     }
     #endregion
 

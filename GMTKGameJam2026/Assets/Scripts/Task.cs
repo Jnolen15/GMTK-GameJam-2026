@@ -1,6 +1,4 @@
-using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
-using Unity.VisualScripting;
 
 public class Task : MonoBehaviour
 {
@@ -56,6 +54,10 @@ public class Task : MonoBehaviour
         }
     }
 
+    public void ShowHint()
+    {
+        _windowControl.SetWindowHint(_taskData.GetTaskHint());
+    }
 
     // declaration
     public Task (string name)

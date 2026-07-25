@@ -1,9 +1,6 @@
-using JetBrains.Annotations;
-using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
-using System.Linq;
 using TMPro;
 
 public class AnswerEmailTask : Task
