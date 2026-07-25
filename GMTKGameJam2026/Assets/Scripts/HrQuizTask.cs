@@ -2,26 +2,25 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using TMPro;
-using System;
 
 public class HrQuizTask : Task
 {
     // ------------------------------------- Variables -------------------------------------
 
-    [Header("HrQuizTask")]
-    private int _questionIndex = 0;
-    private int _questionCount = 5;
+    private int _questionIndex;
+    private int _questionCount;
 
     // references 
+    [Header("HrQuizTask")]
+    [SerializeField] private int _quizLength;
     [SerializeField] private TextMeshProUGUI _questionText;
     [SerializeField] private Button _leftButton;
     [SerializeField] private Button _rightButton;
+    [SerializeField] private List<HRQuizQSO> _questions = new List<HRQuizQSO>();
+    [SerializeField] private GameObject _incorrectWarning;
+    [SerializeField] private TextMeshProUGUI _requirementText;
 
-
-    // replaced by the stuff in the scriptable object later
-    [SerializeField] private List<String> _questions = new List<String>();
-    [SerializeField] private List<String> _rightAnswers = new List<String>();
-    [SerializeField] private List<String> _wrongAnswers = new List<String>();
+    private List<HRQuizQSO> _curQuestions = new List<HRQuizQSO>();
 
 
     // ------------------------------------- Functions -------------------------------------
@@ -35,10 +34,21 @@ public class HrQuizTask : Task
         // subscribe to stuff
         base.Start();
 
-        // taking question count
-        _questionCount = _questions.Count;
+        // make quiz
+        _curQuestions = new List<HRQuizQSO>();
+        List<HRQuizQSO> tempList = new List<HRQuizQSO>();
+        tempList.AddRange(_questions);
+        for (int i = 0; i < _quizLength; i++)
+        {
+            int randPick = Random.Range(0, tempList.Count);
+            _curQuestions.Add(tempList[randPick]);
+            tempList.RemoveAt(randPick);
+        }
+        _questionCount = _curQuestions.Count;
 
         LoadNextQuestion();
+
+        UpdateProgress();
     }
 
     protected override void OnDestroy()
@@ -64,19 +74,22 @@ public class HrQuizTask : Task
             return;
         }
 
+        // Get question data
+        HRQuizQSO questionData = _curQuestions[_questionIndex];
+
         // set question text
-        _questionText.text = _questions[_questionIndex];
+        _questionText.text = questionData.GetQuizQuestion();
 
         // Randomly assing the right/wrong asnwers to one button or the other
         if (UnityEngine.Random.Range(1, 3) == 1)
         {
             // assigning answer text
-            ConfigureButton(_leftButton, _rightAnswers[_questionIndex], true);
-            ConfigureButton(_rightButton, _wrongAnswers[_questionIndex], false);
+            ConfigureButton(_leftButton, questionData.GetQuizRightAnswer(), true);
+            ConfigureButton(_rightButton, questionData.GetQuizWrongAnswer(), false);
         }
         else {
-            ConfigureButton(_leftButton, _wrongAnswers[_questionIndex], false);
-            ConfigureButton(_rightButton, _rightAnswers[_questionIndex], true);
+            ConfigureButton(_leftButton, questionData.GetQuizWrongAnswer(), false);
+            ConfigureButton(_rightButton, questionData.GetQuizRightAnswer(), true);
         }
 
         // Increment Question Index;
@@ -99,13 +112,20 @@ public class HrQuizTask : Task
     public void RightAnswer()
     {
         LoadNextQuestion();
+
+        UpdateProgress();
+        _incorrectWarning.SetActive(false);
     }
 
     public void WrongAnswer()
     {
-        // it sez u suck or smthn
+        _incorrectWarning.SetActive(true);
     }
 
+    private void UpdateProgress()
+    {
+        _requirementText.text = $"{_questionIndex-1} / {_curQuestions.Count}";
+    }
 
     public override void StartTask()
     {

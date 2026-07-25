@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccf51b32cfa2d124aba8cff8f1727d35, type: 3}
+  m_Name: HRQ_1
+  m_EditorClassIdentifier: Assembly-CSharp::HRQuizQSO
+  _question: Bob is taking an extra long time at the water bubbler, and it's getting
+    on your nerves. What should you do?
+  _answerRight: Calmly count to 10 and then politely ask him to move.
+  _answerWrong: WHAM! Nasty right hook straight to the jaw.
