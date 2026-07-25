@@ -135,7 +135,7 @@ public class CensusTask : Task
                 _exclusionTextBox.text = "Exclude poeple marked as " + _excludedPerson.GetGender();
                 break;
             case Exclusion.Age:
-                _exclusionTextBox.text = "Exclude poeple older than as " + _excludedPerson.GetAge();
+                _exclusionTextBox.text = "Exclude poeple older than " + _excludedPerson.GetAge();
                 break;
             case Exclusion.BloodType:
                 _exclusionTextBox.text = "Exclude blood type " + _excludedPerson.GetBloodType();
@@ -184,6 +184,5 @@ public class CensusTask : Task
     public override void CloseTask(bool passed)
     {
         base.CloseTask(passed);
-
     }
 }
