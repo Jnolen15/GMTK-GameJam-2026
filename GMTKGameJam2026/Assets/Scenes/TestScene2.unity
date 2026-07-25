@@ -671,20 +671,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6397256351504453203, guid: 214a9393570f9684fa061b31abf7f1a4, type: 3}
       propertyPath: _taskReferences.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6397256351504453203, guid: 214a9393570f9684fa061b31abf7f1a4, type: 3}
       propertyPath: '_taskReferences.Array.data[0]'
       value: 
-      objectReference: {fileID: 2487628264025418284, guid: 38562164732d74a43a1c616bc3ed2fa4, type: 3}
+      objectReference: {fileID: 2487628264025418284, guid: 00c9725ef40978844817c9914b5d6f35, type: 3}
     - target: {fileID: 6397256351504453203, guid: 214a9393570f9684fa061b31abf7f1a4, type: 3}
       propertyPath: '_taskReferences.Array.data[1]'
       value: 
-      objectReference: {fileID: 2487628264025418284, guid: 00c9725ef40978844817c9914b5d6f35, type: 3}
+      objectReference: {fileID: 2487628264025418284, guid: 38562164732d74a43a1c616bc3ed2fa4, type: 3}
     - target: {fileID: 6397256351504453203, guid: 214a9393570f9684fa061b31abf7f1a4, type: 3}
       propertyPath: '_taskReferences.Array.data[2]'
       value: 
       objectReference: {fileID: 2487628264025418284, guid: e057d9e6919897e47abba544df8ff10a, type: 3}
+    - target: {fileID: 6397256351504453203, guid: 214a9393570f9684fa061b31abf7f1a4, type: 3}
+      propertyPath: '_taskReferences.Array.data[3]'
+      value: 
+      objectReference: {fileID: 2487628264025418284, guid: 5e6937f07b08e9f418301c77fd5a6972, type: 3}
     - target: {fileID: 9008197498979359906, guid: 214a9393570f9684fa061b31abf7f1a4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
