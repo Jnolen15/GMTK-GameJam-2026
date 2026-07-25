@@ -34,9 +34,11 @@ public class GameplayManager : MonoBehaviour
     private List<GameObject> _taskList = new List<GameObject>();
 
     // references
+    public List<TaskSpawnEntry> _introTasks = new List<TaskSpawnEntry>();
     public List<GameObject> _taskReferences = new List<GameObject>();
     [SerializeField] private Canvas _mainCanvas;
     [SerializeField] private Transform _windowZone;
+    private int _introTaskIndex;
 
     // events
     public delegate void GameManagerEvent(float input);
@@ -45,7 +47,12 @@ public class GameplayManager : MonoBehaviour
     public static event GameManagerEvent OnMainTaskTimerStart;
     public static event GameManagerEvent OnGameOver;
 
-
+    [System.Serializable]
+    public class TaskSpawnEntry
+    {
+        public float _spawnTime;
+        public GameObject _taskPref;
+    }
 
 
     // ------------------------------------- Functions -------------------------------------
@@ -81,6 +88,14 @@ public class GameplayManager : MonoBehaviour
 
     void Update()
     {
+        // Intro Tasks
+        if(_introTaskIndex < _introTasks.Count)
+        {
+            if (_introTasks[_introTaskIndex]._spawnTime < Time.time)
+                SpawnIntroTask();
+        }
+
+        // Run main task timer
         if (_mainTaskStarted && Time.time > _mainTaskDelayTimeStamp)
         {
             _mainTaskSecondsLeft -= Time.deltaTime;
@@ -96,7 +111,6 @@ public class GameplayManager : MonoBehaviour
             if (Time.time > _shiftLengthMinutes * 60f + Time.time) EndGame("Game Over - shift finished with time to spare");
             if (_mainTaskSecondsLeft <= 0f) EndGame("Game Over - your countdown finished");
         }
-        
     }
 
     private void MainTaskTimerStarted()
@@ -124,21 +138,36 @@ public class GameplayManager : MonoBehaviour
         Debug.Log("Main task Started");
     }
 
+    public void SpawnIntroTask()
+    {
+        Debug.Log("Spawn " + _introTaskIndex);
+
+        // Spawn new task
+        GameObject newTask = Instantiate(_introTasks[_introTaskIndex]._taskPref, _windowZone);
+
+        // display hint
+        newTask.GetComponent<Task>().ShowHint();
+
+        // move it to a random place on the screen
+        newTask.GetComponent<RectTransform>().anchoredPosition = GetRandomScreenPos();
+
+        // add task to list
+        _taskList.Add(newTask);
+
+        // Add task to spawn pool
+        _taskReferences.Add(_introTasks[_introTaskIndex]._taskPref);
+
+        // Increment intro index
+        _introTaskIndex++;
+    }
 
     public void StartTask(int index)
     {
         // create new task
         GameObject newTask = Instantiate(_taskReferences[index], _windowZone);
 
-        // display hint if first time
-        newTask.GetComponent<Task>().ShowHint();
-
         // move it to a random place on the screen
-        RectTransform rt = _windowZone.GetComponent<RectTransform>();
-        float x = rt.rect.width/4;
-        float y = -rt.rect.height/4;
-        Vector2 v = new Vector2(UnityEngine.Random.Range(-x, x), UnityEngine.Random.Range(-y, y));
-        newTask.GetComponent<RectTransform>().anchoredPosition = v;
+        newTask.GetComponent<RectTransform>().anchoredPosition = GetRandomScreenPos();
          
         // add task to list
         _taskList.Add(newTask);
@@ -153,6 +182,14 @@ public class GameplayManager : MonoBehaviour
 
     private void ReceiveFailedTask(Task task) { 
         // code for failed task goes here
+    }
+
+    private Vector2 GetRandomScreenPos()
+    {
+        RectTransform rt = _windowZone.GetComponent<RectTransform>();
+        float x = rt.rect.width / 4;
+        float y = -rt.rect.height / 4;
+        return new Vector2(UnityEngine.Random.Range(-x, x), UnityEngine.Random.Range(-y, y));
     }
 
     #endregion
