@@ -6,6 +6,7 @@ public class WindowManager : MonoBehaviour
 {
     // =================== Refrences ===================
     [SerializeField] private Transform _windowZone;
+    [SerializeField] private CanvasGroup _windowZoneCG;
     [SerializeField] private Transform _taskElements;
     [SerializeField] private GameObject _taskTrayElementPref;
     [SerializeField] private TaskData _testNewTaskData;
@@ -22,6 +23,7 @@ public class WindowManager : MonoBehaviour
         _canvas = GetComponent<Canvas>();
 
         GameplayManager.OnGameTimerStart += SetGameStart;
+        GameplayManager.OnGameOver += SetGameEnd;
         Task.OnTaskCreated += CreateTaskTrayElement;
         Task.OnTaskFinished += RemoveTaskTrayElement;
         Task.OnTaskFailed += RemoveTaskTrayElement;
@@ -30,6 +32,7 @@ public class WindowManager : MonoBehaviour
     private void OnDestroy()
     {
         GameplayManager.OnGameTimerStart -= SetGameStart;
+        GameplayManager.OnGameOver -= SetGameEnd;
         Task.OnTaskCreated -= CreateTaskTrayElement;
         Task.OnTaskFinished -= RemoveTaskTrayElement;
         Task.OnTaskFailed -= RemoveTaskTrayElement;
@@ -38,6 +41,12 @@ public class WindowManager : MonoBehaviour
     private void SetGameStart(float startTime)
     {
         _gameStartTime = startTime;
+    }
+    
+    private void SetGameEnd(float nothin)
+    {
+        _windowZoneCG.interactable = false;
+        _windowZoneCG.blocksRaycasts = false;
     }
     #endregion
 

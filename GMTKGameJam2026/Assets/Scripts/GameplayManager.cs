@@ -48,6 +48,11 @@ public class GameplayManager : MonoBehaviour
     public static event GameManagerEvent OnMainTaskTimerStart;
     public static event GameManagerEvent OnGameOver;
 
+    public delegate void GameEndEvent();
+    public static event GameEndEvent OnGameEndWin;
+    public static event GameEndEvent OnGameEndSanctifyLoss;
+    public static event GameEndEvent OnGameEndTaskLoss;
+
     [System.Serializable]
     public class TaskSpawnEntry
     {
@@ -107,8 +112,8 @@ public class GameplayManager : MonoBehaviour
         // end game checks
         if (!_gameOver && _mainTaskStarted)
         {
-            if (GetAdjustedGameTime() > _shiftLengthMinutes * 60f) EndGame("Game Over - shift finished with time to spare");
-            if (_mainTaskSecondsLeft <= 0f) EndGame("Game Over - your countdown finished");
+            if (GetAdjustedGameTime() > _shiftLengthMinutes * 60f) EndGame(1);
+            if (_mainTaskSecondsLeft <= 0f) EndGame(2);
         }
     }
 
@@ -129,6 +134,8 @@ public class GameplayManager : MonoBehaviour
         _mainTaskTimerRunStart = false;
 
         OnMainTaskDelayReset?.Invoke(_mainTaskDelayTimeStamp);
+
+        StatTracker.Instance.IncrementSanctifications();
     }
 
     public void StartMainTask()
@@ -177,11 +184,18 @@ public class GameplayManager : MonoBehaviour
         _taskList.Add(newTask);
     }
 
-    public void EndGame(string text)
+    public void EndGame(int type)
     {
         _gameOver = true;
         OnGameOver?.Invoke(0);
-        Debug.Log(text);
+        Debug.Log("Game OVER");
+
+        if (type == 1)
+            OnGameEndWin?.Invoke();
+        else if (type == 2)
+            OnGameEndSanctifyLoss?.Invoke();
+        else if (type == 3)
+            OnGameEndTaskLoss?.Invoke();
     }
 
     private void ReceiveFailedTask(Task task) { 

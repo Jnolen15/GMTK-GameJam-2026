@@ -77,6 +77,7 @@ public class Task : MonoBehaviour
         if (passed)
         {
             OnTaskFinished?.Invoke(this);
+            StatTracker.Instance.IncrementTasksCompleted();
         } else
         {
             OnTaskFailed?.Invoke(this);
