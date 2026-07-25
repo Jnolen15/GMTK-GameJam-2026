@@ -61,5 +61,7 @@ MonoBehaviour:
     _taskPref: {fileID: 2487628264025418284, guid: e057d9e6919897e47abba544df8ff10a, type: 3}
   - _spawnTime: 20
     _taskPref: {fileID: 2487628264025418284, guid: 5e6937f07b08e9f418301c77fd5a6972, type: 3}
+  - _spawnTime: 30
+    _taskPref: {fileID: 2487628264025418284, guid: 5123417f524ec214a9c536332ea82171, type: 3}
   _mainCanvas: {fileID: 0}
   _windowZone: {fileID: 0}

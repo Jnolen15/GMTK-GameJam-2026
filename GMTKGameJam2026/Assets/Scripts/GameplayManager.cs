@@ -206,7 +206,7 @@ public class GameplayManager : MonoBehaviour
     {
         RectTransform rt = _windowZone.GetComponent<RectTransform>();
         float x = rt.rect.width / 4;
-        float y = -rt.rect.height / 4;
+        float y = -rt.rect.height / 6;
         return new Vector2(UnityEngine.Random.Range(-x, x), UnityEngine.Random.Range(-y, y));
     }
 

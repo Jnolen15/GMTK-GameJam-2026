@@ -29,6 +29,8 @@ MonoBehaviour:
   _minAge: 18
   _genders:
   - M
+  - M
+  - F
   - F
   - NB
   _bloodTypes:
