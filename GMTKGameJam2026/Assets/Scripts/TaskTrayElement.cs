@@ -24,7 +24,7 @@ public class TaskTrayElement : MonoBehaviour
         _taskUIRoot = task.GetTaskUIObject();
 
         TaskData data = task.GetTaskData();
-        _taskName.text = data.GetTaskName();
+        _taskName.text = data.GetTaskTrayName();
         _taskImage.sprite = data.GetTaskIcon();
         _taskImage.material = data.GetTaskMaterial();
     }

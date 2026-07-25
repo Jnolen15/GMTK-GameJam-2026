@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e03000045016a114e844a12442264fbf, type: 3}
-  m_Name: PopupAdTD
+  m_Name: HRQuizTD
   m_EditorClassIdentifier: Assembly-CSharp::TaskData
-  _taskName: Offer for you!
-  _taskTrayName: Popup
-  _taskIcon: {fileID: 21300000, guid: 31353c7b1a0deea43ba3a4cd33c9aeca, type: 3}
-  _taskIconMat: {fileID: 2100000, guid: e00edde357774e04fb915fd7d1d7fcfe, type: 2}
-  _taskHint: Close the AD!
+  _taskName: HR Quiz
+  _taskTrayName: HR
+  _taskIcon: {fileID: 21300000, guid: 63dc24af442b32e4a981ccc83d9b0418, type: 3}
+  _taskIconMat: {fileID: 2100000, guid: 9672b61edd6018a4a9cbe0f3b37c7006, type: 2}
+  _taskHint: Complete the quiz

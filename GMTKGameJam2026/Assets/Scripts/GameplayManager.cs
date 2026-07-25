@@ -35,7 +35,7 @@ public class GameplayManager : MonoBehaviour
 
     // references
     public List<TaskSpawnEntry> _introTasks = new List<TaskSpawnEntry>();
-    public List<GameObject> _taskReferences = new List<GameObject>();
+    private List<GameObject> _taskReferences = new List<GameObject>();
     [SerializeField] private Canvas _mainCanvas;
     [SerializeField] private Transform _windowZone;
     private int _introTaskIndex;

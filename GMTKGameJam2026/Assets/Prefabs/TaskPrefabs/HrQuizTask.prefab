@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   _taskTime: 15
-  _taskData: {fileID: 11400000, guid: f8c9bd2484ca44340b3a5cf0678b4d32, type: 2}
+  _taskData: {fileID: 11400000, guid: 3a4846b4be88751408cc3f3509821c3a, type: 2}
   _rootUI: {fileID: 3837787173920185272}
   _windowControl: {fileID: 1438024915424159937}
   _questionText: {fileID: 2050899522691033134}
@@ -591,6 +591,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9068221551262941479, guid: cc3dce49ca6f3a74185ef28f602e518d, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: 9672b61edd6018a4a9cbe0f3b37c7006, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
