@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 2594298003665311459}
   - component: {fileID: 1459827297959020152}
   - component: {fileID: 7956330763012105138}
+  - component: {fileID: 6861073879013193114}
   m_Layer: 5
   m_Name: TaskTrayElement
   m_TagString: Untagged
@@ -229,6 +230,19 @@ MonoBehaviour:
   _yellowMat: {fileID: 2100000, guid: a8ae1128ae6d738479d58404c6792bc5, type: 2}
   _orangeMat: {fileID: 2100000, guid: 9672b61edd6018a4a9cbe0f3b37c7006, type: 2}
   _redMat: {fileID: 2100000, guid: d6a3d84c0861a0d4b970ac2f66af14d4, type: 2}
+--- !u!114 &6861073879013193114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2534727261267893005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9088825fcfe19478bc21bde0c5ae6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UISoundElement
+  _playHoverSfx: 1
 --- !u!1 &5369686749062720731
 GameObject:
   m_ObjectHideFlags: 0
