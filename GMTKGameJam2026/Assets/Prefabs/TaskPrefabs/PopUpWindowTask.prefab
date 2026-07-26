@@ -1026,8 +1026,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0241390d5ca8854191a84af5aa79584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PopUpTask
-  _taskTime: 20
-  _taskFrequencyRate: 3
+  _taskTime: 30
+  _taskFrequencyRate: 8
   _taskData: {fileID: 11400000, guid: 62fc812366842f1488b22ac022d69e11, type: 2}
   _rootUI: {fileID: 3837787173920185272}
   _windowControl: {fileID: 1438024915424159937}

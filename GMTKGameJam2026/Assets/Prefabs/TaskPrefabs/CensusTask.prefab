@@ -49,8 +49,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 072d07477f0d8d04bae5a920bee19ce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _taskTime: 75
-  _taskFrequencyRate: 1
+  _taskTime: 85
+  _taskFrequencyRate: 4
   _taskData: {fileID: 11400000, guid: aff8c62bb8b661948a3b558779bc46d5, type: 2}
   _rootUI: {fileID: 3837787173920185272}
   _windowControl: {fileID: 1438024915424159937}

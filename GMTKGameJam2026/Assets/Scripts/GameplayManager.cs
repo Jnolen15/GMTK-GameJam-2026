@@ -29,6 +29,7 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] private float _mainTaskTimeSeconds = 60; // Time until the main task ends
     private float _mainTaskDelayTimeStamp; // stamp for when the main task stats counting down again
     [SerializeField] private float _mainTaskDelaySeconds = 15; // Time the main task delays until coninuing to count down
+    [SerializeField] private float _initialMainTaskDelaySeconds = 2;
     private float _mainTaskSecondsLeft; // keeps track of the main task time left
     private bool _mainTaskTimerRunStart;
 
@@ -150,7 +151,16 @@ public class GameplayManager : MonoBehaviour
     public void StartMainTask()
     {
         _mainTaskStarted = true;
-        ResetMainTaskDelay(); // start delay
+        // start delay, manually invoking to get one initial shorter delay
+        _mainTaskDelayTimeStamp = GetAdjustedGameTime() + _initialMainTaskDelaySeconds;
+        _mainTaskTimerRunStart = false;
+
+        OnMainTaskDelayReset?.Invoke(_mainTaskDelayTimeStamp);
+
+        StatTracker.Instance.IncrementSanctifications();
+
+
+
         _mainTaskSecondsLeft = _mainTaskTimeSeconds; // set the dynamic var
 
         OnMainTimerUpdate?.Invoke(_mainTaskTimeSeconds); // initialize UI element text

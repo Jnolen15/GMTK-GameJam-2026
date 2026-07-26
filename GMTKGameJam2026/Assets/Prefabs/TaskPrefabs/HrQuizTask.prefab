@@ -262,8 +262,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2e151a4a0de6794eaf1982b00f3a8ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _taskTime: 90
-  _taskFrequencyRate: 1
+  _taskTime: 85
+  _taskFrequencyRate: 3
   _taskData: {fileID: 11400000, guid: 3a4846b4be88751408cc3f3509821c3a, type: 2}
   _rootUI: {fileID: 3837787173920185272}
   _windowControl: {fileID: 1438024915424159937}
