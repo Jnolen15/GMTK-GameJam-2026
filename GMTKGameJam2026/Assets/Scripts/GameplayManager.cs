@@ -102,14 +102,14 @@ public class GameplayManager : MonoBehaviour
     void Update()
     {
         // Intro Tasks
-        if(_introTaskIndex < _introTasks.Count)
+        if(!_gameOver && _introTaskIndex < _introTasks.Count)
         {
             if (_introTasks[_introTaskIndex]._spawnTime < GetAdjustedGameTime())
                 SpawnIntroTask();
         }
 
         // Run main task timer
-        if (_mainTaskStarted && GetAdjustedGameTime() > _mainTaskDelayTimeStamp)
+        if (!_gameOver && _mainTaskStarted && GetAdjustedGameTime() > _mainTaskDelayTimeStamp)
         {
             _mainTaskSecondsLeft -= Time.deltaTime;
             OnMainTimerUpdate?.Invoke(_mainTaskSecondsLeft);

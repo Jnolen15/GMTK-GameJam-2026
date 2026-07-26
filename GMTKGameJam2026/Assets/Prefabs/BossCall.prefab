@@ -211,6 +211,7 @@ MonoBehaviour:
   _statsText: {fileID: 1848007710620628743}
   _soundPlayer: {fileID: 4973141898382884867}
   _phoneCall: {fileID: 8300000, guid: 4b03fcfd693e49544b0ee59ada8cae67, type: 3}
+  _bossTalking: {fileID: 8300000, guid: 13c23ce0acca5924caed06e3e9dc937f, type: 3}
   _gameWin: {fileID: 8300000, guid: 173f04a3364ca144fb5e72ad88430ea3, type: 3}
   _gameLoss: {fileID: 8300000, guid: b0cf6e88d6d2bd44e921d020b9d6f702, type: 3}
 --- !u!1 &1994041423642462111

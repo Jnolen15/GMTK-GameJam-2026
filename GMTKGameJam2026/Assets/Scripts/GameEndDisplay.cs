@@ -19,6 +19,7 @@ public class GameEndDisplay : MonoBehaviour
     [Header("Sfx")]
     [SerializeField] private SoundPlayer _soundPlayer;
     [SerializeField] private AudioClip _phoneCall;
+    [SerializeField] private AudioClip _bossTalking;
     [SerializeField] private AudioClip _gameWin;
     [SerializeField] private AudioClip _gameLoss;
 
@@ -68,6 +69,7 @@ public class GameEndDisplay : MonoBehaviour
         _bossWindow.SetActive(true);
         _tentacles.SetActive(sanctLoss);
 
+        _soundPlayer.PlaySFX(_bossTalking);
         _bossMsg.text = bossMsg;
 
         yield return new WaitForSeconds(6f);
