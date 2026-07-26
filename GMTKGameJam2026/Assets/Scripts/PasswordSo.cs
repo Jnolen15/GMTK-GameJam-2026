@@ -24,10 +24,11 @@ public class PasswordSo : ScriptableObject
 
     public string GetDescription() { return _description; }
 
-    public string GetPassword() { 
+    public string GetPassword() {
 
+        Debug.Log(_passwordLength);
         // generates password if its null
-        if (_password == null)
+        if (_password == "")
         {
             string s = string.Empty;
             for (int i = 0; i < _passwordLength; i++)
@@ -36,7 +37,6 @@ public class PasswordSo : ScriptableObject
             }
             _password = s;
         }
-        Debug.Log(_password);
        return _password;
     }
 }
