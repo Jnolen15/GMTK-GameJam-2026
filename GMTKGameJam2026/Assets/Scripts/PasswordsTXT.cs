@@ -10,17 +10,20 @@ public class PasswordsTXT : MonoBehaviour
 
     void Start()
     {
+        foreach (PasswordSo p in _passwords)
+        {
+            p.GeneratePassword();
+        }
+
+
         // acquire and set textboxes
         List<TextMeshProUGUI> _textBoxes = this.GetComponentsInChildren<TextMeshProUGUI>().ToList();
-
-        List<PasswordSo> _usedPasswords= new List<PasswordSo>();
 
         foreach (TextMeshProUGUI t in _textBoxes)
         {
             PasswordSo temp = _passwords[Random.Range(0, _passwords.Count)];
             _passwords.Remove(temp);
             t.text = temp.GetAccount() + ": " + temp.GetPassword();
-            
         }
     }
 }

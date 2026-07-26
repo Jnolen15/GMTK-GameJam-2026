@@ -725,6 +725,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3129650298324071144, guid: d7c74bcf8b7f55d45b418ff7dc78b562, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -104.99994
+      objectReference: {fileID: 0}
     - target: {fileID: 5984271687826892364, guid: d7c74bcf8b7f55d45b418ff7dc78b562, type: 3}
       propertyPath: m_Name
       value: BaseCanvas
@@ -765,6 +769,58 @@ PrefabInstance:
     - target: {fileID: 6397256351504453203, guid: 214a9393570f9684fa061b31abf7f1a4, type: 3}
       propertyPath: _shiftLengthMinutes
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397256351504453203, guid: 214a9393570f9684fa061b31abf7f1a4, type: 3}
+      propertyPath: _introTasks.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397256351504453203, guid: 214a9393570f9684fa061b31abf7f1a4, type: 3}
+      propertyPath: _introTasks.Array.data[0]._taskPref
+      value: 
+      objectReference: {fileID: 2487628264025418284, guid: e4b2f7a5aa9ab7349b1b8eb796e36e32, type: 3}
+    - target: {fileID: 6397256351504453203, guid: 214a9393570f9684fa061b31abf7f1a4, type: 3}
+      propertyPath: _introTasks.Array.data[1]._taskPref
+      value: 
+      objectReference: {fileID: 2487628264025418284, guid: 00c9725ef40978844817c9914b5d6f35, type: 3}
+    - target: {fileID: 6397256351504453203, guid: 214a9393570f9684fa061b31abf7f1a4, type: 3}
+      propertyPath: _introTasks.Array.data[2]._taskPref
+      value: 
+      objectReference: {fileID: 2487628264025418284, guid: 38562164732d74a43a1c616bc3ed2fa4, type: 3}
+    - target: {fileID: 6397256351504453203, guid: 214a9393570f9684fa061b31abf7f1a4, type: 3}
+      propertyPath: _introTasks.Array.data[3]._taskPref
+      value: 
+      objectReference: {fileID: 2487628264025418284, guid: e057d9e6919897e47abba544df8ff10a, type: 3}
+    - target: {fileID: 6397256351504453203, guid: 214a9393570f9684fa061b31abf7f1a4, type: 3}
+      propertyPath: _introTasks.Array.data[4]._taskPref
+      value: 
+      objectReference: {fileID: 2487628264025418284, guid: 5e6937f07b08e9f418301c77fd5a6972, type: 3}
+    - target: {fileID: 6397256351504453203, guid: 214a9393570f9684fa061b31abf7f1a4, type: 3}
+      propertyPath: _introTasks.Array.data[5]._taskPref
+      value: 
+      objectReference: {fileID: 2487628264025418284, guid: 5123417f524ec214a9c536332ea82171, type: 3}
+    - target: {fileID: 6397256351504453203, guid: 214a9393570f9684fa061b31abf7f1a4, type: 3}
+      propertyPath: _introTasks.Array.data[0]._spawnTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397256351504453203, guid: 214a9393570f9684fa061b31abf7f1a4, type: 3}
+      propertyPath: _introTasks.Array.data[1]._spawnTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397256351504453203, guid: 214a9393570f9684fa061b31abf7f1a4, type: 3}
+      propertyPath: _introTasks.Array.data[2]._spawnTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397256351504453203, guid: 214a9393570f9684fa061b31abf7f1a4, type: 3}
+      propertyPath: _introTasks.Array.data[3]._spawnTime
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397256351504453203, guid: 214a9393570f9684fa061b31abf7f1a4, type: 3}
+      propertyPath: _introTasks.Array.data[4]._spawnTime
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397256351504453203, guid: 214a9393570f9684fa061b31abf7f1a4, type: 3}
+      propertyPath: _introTasks.Array.data[5]._spawnTime
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 9008197498979359906, guid: 214a9393570f9684fa061b31abf7f1a4, type: 3}
       propertyPath: m_LocalPosition.x
