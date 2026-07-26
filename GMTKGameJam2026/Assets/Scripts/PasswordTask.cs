@@ -41,10 +41,7 @@ public class PasswordTask : Task
         _passwordSO = _passwordSOs[Random.Range(0, _passwordSOs.Count)];
 
         // configure text 
-        _accountText.text = _passwordSO.GetDescription();
-
-        
-
+        _accountText.text = _passwordSO.GetAccount();
     }
 
     public void PasswordCheck() {

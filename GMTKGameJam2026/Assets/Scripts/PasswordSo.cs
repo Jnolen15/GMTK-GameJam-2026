@@ -8,7 +8,9 @@ public class PasswordSo : ScriptableObject
     // =================== Data ===================
     [SerializeField] private string _account;
     [SerializeField] private string _description;
-    [SerializeField] private int _passwordLength;
+    [SerializeField] private int _minPasswordLength;
+    [SerializeField] private int _maxPasswordLength;
+    private int _passwordLength;
 
     private string _password = null;
 
@@ -24,19 +26,20 @@ public class PasswordSo : ScriptableObject
 
     public string GetDescription() { return _description; }
 
-    public string GetPassword() { 
-
+    public void GeneratePassword()
+    {
+        // Debug.Log(_passwordLength);
         // generates password if its null
-        if (_password == null)
+        string s = string.Empty;
+        _passwordLength = Random.Range(_minPasswordLength, _maxPasswordLength + 1);
+        for (int i = 0; i < _passwordLength; i++)
         {
-            string s = string.Empty;
-            for (int i = 0; i < _passwordLength; i++)
-            {
-                s += _possibleChars[Random.Range(0, _possibleChars.Length)];
-            }
-            _password = s;
+            s += _possibleChars[Random.Range(0, _possibleChars.Length)];
         }
-        Debug.Log(_password);
+        _password = s;
+    }
+
+    public string GetPassword() {
        return _password;
     }
 }
