@@ -926,6 +926,54 @@ PrefabInstance:
       propertyPath: _windowZone
       value: 
       objectReference: {fileID: 1216458524}
+    - target: {fileID: 6397256351504453203, guid: 214a9393570f9684fa061b31abf7f1a4, type: 3}
+      propertyPath: _taskDeviationFloor
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397256351504453203, guid: 214a9393570f9684fa061b31abf7f1a4, type: 3}
+      propertyPath: _taskDeviationScaler
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397256351504453203, guid: 214a9393570f9684fa061b31abf7f1a4, type: 3}
+      propertyPath: _baseTaskDeviationSeconds
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397256351504453203, guid: 214a9393570f9684fa061b31abf7f1a4, type: 3}
+      propertyPath: _possibleTaskDeviationSeconds
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397256351504453203, guid: 214a9393570f9684fa061b31abf7f1a4, type: 3}
+      propertyPath: _introTasks.Array.data[0]._taskPref
+      value: 
+      objectReference: {fileID: 2487628264025418284, guid: 38562164732d74a43a1c616bc3ed2fa4, type: 3}
+    - target: {fileID: 6397256351504453203, guid: 214a9393570f9684fa061b31abf7f1a4, type: 3}
+      propertyPath: _introTasks.Array.data[1]._taskPref
+      value: 
+      objectReference: {fileID: 2487628264025418284, guid: e057d9e6919897e47abba544df8ff10a, type: 3}
+    - target: {fileID: 6397256351504453203, guid: 214a9393570f9684fa061b31abf7f1a4, type: 3}
+      propertyPath: _introTasks.Array.data[2]._taskPref
+      value: 
+      objectReference: {fileID: 2487628264025418284, guid: e4b2f7a5aa9ab7349b1b8eb796e36e32, type: 3}
+    - target: {fileID: 6397256351504453203, guid: 214a9393570f9684fa061b31abf7f1a4, type: 3}
+      propertyPath: _introTasks.Array.data[0]._spawnTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397256351504453203, guid: 214a9393570f9684fa061b31abf7f1a4, type: 3}
+      propertyPath: _introTasks.Array.data[1]._spawnTime
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397256351504453203, guid: 214a9393570f9684fa061b31abf7f1a4, type: 3}
+      propertyPath: _introTasks.Array.data[2]._spawnTime
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397256351504453203, guid: 214a9393570f9684fa061b31abf7f1a4, type: 3}
+      propertyPath: _introTasks.Array.data[3]._spawnTime
+      value: 37
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397256351504453203, guid: 214a9393570f9684fa061b31abf7f1a4, type: 3}
+      propertyPath: _introTasks.Array.data[4]._spawnTime
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 9008197498979359906, guid: 214a9393570f9684fa061b31abf7f1a4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
