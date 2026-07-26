@@ -15,7 +15,7 @@ public class PasswordSo : ScriptableObject
     private string _password = null;
 
 
-    private string _possibleChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWCYZ123456789!@#$%^&*?";
+    [SerializeField] private string _possibleChars = "abcdefghjkmnopqrstuvwxyzABCDEFGHJKMNOPQRSTUVWCYZ123456789!@#$%^&*?";
 
 
 

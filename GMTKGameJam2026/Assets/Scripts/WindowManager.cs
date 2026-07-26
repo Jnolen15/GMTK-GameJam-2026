@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using DG.Tweening;
 
 public class WindowManager : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class WindowManager : MonoBehaviour
     [SerializeField] private GameObject _taskTrayElementPref;
     [SerializeField] private TaskData _testNewTaskData;
     [SerializeField] private TextMeshProUGUI _clock;
+    [SerializeField] private CanvasGroup _taskFailGroup;
+    [SerializeField] private CanvasGroup _taskSuccessGroup;
     [SerializeField] private List<Strike> _strikes = new List<Strike>();
 
     private List<TaskTrayElement> _trayElementList = new List<TaskTrayElement>();
@@ -28,6 +31,7 @@ public class WindowManager : MonoBehaviour
         Task.OnTaskCreated += CreateTaskTrayElement;
         Task.OnTaskFinished += RemoveTaskTrayElement;
         Task.OnTaskFailed += RemoveTaskTrayElement;
+        Task.OnTaskFinished += TaskSuccess;
         Task.OnTaskFailed += StrikeStrike;
     }
 
@@ -38,6 +42,7 @@ public class WindowManager : MonoBehaviour
         Task.OnTaskCreated -= CreateTaskTrayElement;
         Task.OnTaskFinished -= RemoveTaskTrayElement;
         Task.OnTaskFailed -= RemoveTaskTrayElement;
+        Task.OnTaskFinished -= TaskSuccess;
         Task.OnTaskFailed -= StrikeStrike;
     }
 
@@ -112,8 +117,15 @@ public class WindowManager : MonoBehaviour
         targetTrans.SetAsLastSibling();
     }
 
+    private void TaskSuccess(Task task)
+    {
+        _taskSuccessGroup.DOFade(0.8f, 0.2f).SetEase(Ease.OutSine).SetLoops(2, LoopType.Yoyo);
+    }
+
     private void StrikeStrike(Task task)
     {
+        _taskFailGroup.DOFade(0.8f, 0.2f).SetEase(Ease.OutSine).SetLoops(2, LoopType.Yoyo);
+
         foreach (Strike strike in _strikes)
         {
             if (!strike.GetIsStriken())

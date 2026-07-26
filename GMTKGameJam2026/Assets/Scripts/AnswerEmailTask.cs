@@ -50,7 +50,7 @@ public class AnswerEmailTask : Task
     private void SendEmail() { 
         if (_textInput.text.Length >= _minCharacterCount)
         {
-            CloseTask(_taskPassed);
+            CloseTask(true);
         } else
         {
             _notLongEnoughMessage.SetActive(true);
