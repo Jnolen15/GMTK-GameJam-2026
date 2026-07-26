@@ -47,8 +47,9 @@ MonoBehaviour:
   UsingTestParameters: 0
   _gameStartTime: 0
   _shiftLengthMinutes: 8
-  _taskDeviationSeconds: 15
-  _taskDeviationScaler: 0.9
+  _baseTaskDeviationSeconds: 15
+  _possibleTaskDeviationSeconds: 2.5
+  _taskDeviationScaler: 0.95
   _taskDeviationFloor: 5
   _mainTaskTimeSeconds: 60
   _mainTaskDelaySeconds: 15
@@ -59,9 +60,9 @@ MonoBehaviour:
     _taskPref: {fileID: 2487628264025418284, guid: 38562164732d74a43a1c616bc3ed2fa4, type: 3}
   - _spawnTime: 10
     _taskPref: {fileID: 2487628264025418284, guid: e057d9e6919897e47abba544df8ff10a, type: 3}
-  - _spawnTime: 20
+  - _spawnTime: 28
     _taskPref: {fileID: 2487628264025418284, guid: 5e6937f07b08e9f418301c77fd5a6972, type: 3}
-  - _spawnTime: 30
+  - _spawnTime: 40
     _taskPref: {fileID: 2487628264025418284, guid: 5123417f524ec214a9c536332ea82171, type: 3}
   _mainCanvas: {fileID: 0}
   _windowZone: {fileID: 0}

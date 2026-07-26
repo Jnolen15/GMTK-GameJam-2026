@@ -259,7 +259,7 @@ public class GameplayManager : MonoBehaviour
             // loop and start the next task with less time, floors at _minSecondsBetweenTasks
             
             float taskDelayOffset = UnityEngine.Random.Range(-_possibleTaskDeviationSeconds, _possibleTaskDeviationSeconds);
-            float taskDelay = (time) * _taskDeviationScaler;
+            float taskDelay = (time) * _taskDeviationScaler + taskDelayOffset;
             Debug.Log(taskDelay + " seconds delay");
             if (!_gameOver) StartCoroutine(TaskTimer(_taskDeviationFloor > taskDelay  ? _taskDeviationFloor : taskDelay));
         }
