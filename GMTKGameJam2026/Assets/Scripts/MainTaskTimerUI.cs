@@ -8,6 +8,11 @@ public class MainTaskTimerUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _textBox;
     [SerializeField] private CanvasGroup _holdButtonCanvasGroup;
 
+    [Header("Sfx")]
+    [SerializeField] private SoundPlayer _soundPlayer;
+    [SerializeField] private AudioClip _timerStart;
+    [SerializeField] private AudioClip _sanctify;
+
     // =================== Setup ===================
     #region Setup
     void Start()
@@ -29,6 +34,7 @@ public class MainTaskTimerUI : MonoBehaviour
     #region Function
     private void MainTimerResume(float timeStamp)
     {
+        _soundPlayer.PlaySFX(_timerStart);
         ToggleTaskActive(true);
     }
 
@@ -59,8 +65,11 @@ public class MainTaskTimerUI : MonoBehaviour
             _textBox.color = Color.red;
         else if (curTime < 30)
             _textBox.color = Color.orange;
-        else if (curTime < 60)
-            _textBox.color = Color.yellow;
+    }
+
+    public void CompleteSanctify()
+    {
+        _soundPlayer.PlaySFX(_sanctify);
     }
     #endregion
 }
