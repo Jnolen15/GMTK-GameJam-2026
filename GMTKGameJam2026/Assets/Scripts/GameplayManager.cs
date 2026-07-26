@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using System;
+using UnityEditor.Rendering;
 
 public class GameplayManager : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] private float _taskDeviationSeconds = 15; // time between giving the player tasks
     [SerializeField] private float _taskDeviationScaler = 0.9f; // multiplier that reduces time between each subsequent task
     [SerializeField] private float _taskDeviationFloor = 5; // minimum time between tasks
+    private float _totalTaskWieght = 0;
 
     // main task variables
     private Boolean _mainTaskStarted = false;
@@ -168,6 +170,9 @@ public class GameplayManager : MonoBehaviour
         // Add task to spawn pool
         _taskReferences.Add(_introTasks[_introTaskIndex]._taskPref);
 
+        // add task weight to spawn pool
+        _totalTaskWieght += _introTasks[_introTaskIndex]._taskPref.GetComponent<Task>().GetFrequencyRate();
+
         // Increment intro index
         _introTaskIndex++;
     }
@@ -221,7 +226,17 @@ public class GameplayManager : MonoBehaviour
         if(!_gameOver)
         {
             // start a random task
-            StartTask(UnityEngine.Random.Range(0, _taskReferences.Count));
+            float weightNum = UnityEngine.Random.Range(0, _totalTaskWieght); // roll the target weight, might bug on max rolls
+            float taskWeightIterator = 0; // adds weights until its more than num
+            int taskIndex = 0;
+            while (taskWeightIterator <= weightNum)
+            {
+                taskIndex++;
+                taskWeightIterator += _taskReferences[taskIndex].GetComponent<Task>().GetFrequencyRate();
+            }
+
+            StartTask(taskIndex);
+
             
 
             // loop and start the next task with less time, floors at _minSecondsBetweenTasks

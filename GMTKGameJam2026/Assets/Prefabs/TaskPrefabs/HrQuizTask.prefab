@@ -263,6 +263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   _taskTime: 90
+  _taskFrequencyRate: 1
   _taskData: {fileID: 11400000, guid: 3a4846b4be88751408cc3f3509821c3a, type: 2}
   _rootUI: {fileID: 3837787173920185272}
   _windowControl: {fileID: 1438024915424159937}
