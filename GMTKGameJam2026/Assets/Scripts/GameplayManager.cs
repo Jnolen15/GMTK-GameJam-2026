@@ -12,7 +12,7 @@ public class GameplayManager : MonoBehaviour
     // ------------------------------------- Variables -------------------------------------
     [Header("Variables")]
     [SerializeField] public float _gameStartTime = 0; // keeps track of when the game "starts"
-    
+
     [SerializeField] private float _shiftLengthMinutes = 30; // longest possible time the game can run
     [SerializeField] private float _baseTaskDeviationSeconds = 15; // time between giving the player tasks
     [SerializeField] private float _possibleTaskDeviationSeconds = 2.5f;
@@ -22,6 +22,7 @@ public class GameplayManager : MonoBehaviour
 
     private float _maxStrikes = 5;
     private float _curStrikes;
+    private float _activeTasks = 0;
 
     // main task variables
     private Boolean _mainTaskStarted = false;
@@ -32,13 +33,10 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] private float _initialMainTaskDelaySeconds = 2;
     private float _mainTaskSecondsLeft; // keeps track of the main task time left
     private bool _mainTaskTimerRunStart;
+    private bool _tutorialComplete = false;
 
 
     private Boolean _gameOver = false;
-
-    
-    // lists
-    private List<GameObject> _taskList = new List<GameObject>();
 
     // references
     public List<TaskSpawnEntry> _introTasks = new List<TaskSpawnEntry>();
@@ -101,7 +99,7 @@ public class GameplayManager : MonoBehaviour
     void Update()
     {
         // Intro Tasks
-        if(!_gameOver && _introTaskIndex < _introTasks.Count)
+        if (!_gameOver && _introTaskIndex < _introTasks.Count)
         {
             if (_introTasks[_introTaskIndex]._spawnTime < GetAdjustedGameTime())
                 SpawnIntroTask();
@@ -179,9 +177,6 @@ public class GameplayManager : MonoBehaviour
         // move it to a random place on the screen
         newTask.GetComponent<RectTransform>().anchoredPosition = GetRandomScreenPos();
 
-        // add task to list
-        _taskList.Add(newTask);
-
         // Add task to spawn pool
         _taskReferences.Add(_introTasks[_introTaskIndex]._taskPref);
 
@@ -192,19 +187,22 @@ public class GameplayManager : MonoBehaviour
         _introTaskIndex++;
 
         // once tutorial tasks are done start random task spawn
-        if (_introTaskIndex >= _introTasks.Count) StartCoroutine(TaskTimer(_baseTaskDeviationSeconds));
+        if (_introTaskIndex >= _introTasks.Count)
+        {
+            _tutorialComplete = true;
+            StartCoroutine(TaskTimer(_baseTaskDeviationSeconds));
+
+        }
     }
 
     public void StartTask(int index)
     {
+        _activeTasks++;
         // create new task
         GameObject newTask = Instantiate(_taskReferences[index], _windowZone);
 
         // move it to a random place on the screen
         newTask.GetComponent<RectTransform>().anchoredPosition = GetRandomScreenPos();
-         
-        // add task to list
-        _taskList.Add(newTask);
     }
 
     public void EndGame(int type)
@@ -227,6 +225,26 @@ public class GameplayManager : MonoBehaviour
 
         if (_curStrikes >= _maxStrikes)
             EndGame(3);
+
+        _activeTasks--;
+        // attempt to spawn an task in if there are no tasks
+        if (_tutorialComplete && _activeTasks <= 0)
+        {
+            StartCoroutine(DelaySpawnSingleTask(2));
+            Debug.Log("Spawning Extra Task");
+        }
+    }
+
+    private void ReceiveCompletedTask(Task task)
+    {
+        _activeTasks++;
+        // attempt to spawn an task in if there are no tasks
+        if (_tutorialComplete && _activeTasks <= 0)
+        {
+            StartCoroutine(DelaySpawnSingleTask(2));
+            Debug.Log("Spawning Extra Task");
+        }
+
     }
 
     private Vector2 GetRandomScreenPos()
@@ -245,7 +263,7 @@ public class GameplayManager : MonoBehaviour
         // wait the alloted time to start thetask
         yield return new WaitForSeconds(time);
 
-        if(!_gameOver)
+        if (!_gameOver)
         {
             // start a random task
             float weightNum = UnityEngine.Random.Range(0, _totalTaskWieght); // roll the target weight
@@ -260,7 +278,6 @@ public class GameplayManager : MonoBehaviour
                 taskWeightIterator += _taskReferences[taskIndex].GetComponent<Task>().GetFrequencyRate();
                 // Debug.Log(taskWeightIterator + "/" + weightNum);
                 // Debug.Log(taskIndex + " out of " + _taskReferences.Count + " tasks");
-                
             }
 
             StartTask(taskIndex);
@@ -268,12 +285,39 @@ public class GameplayManager : MonoBehaviour
 
 
             // loop and start the next task with less time, floors at _minSecondsBetweenTasks
-            
+
             float taskDelayOffset = UnityEngine.Random.Range(-_possibleTaskDeviationSeconds, _possibleTaskDeviationSeconds);
             float taskDelay = (time) * _taskDeviationScaler + taskDelayOffset;
             Debug.Log(taskDelay + " seconds delay");
-            if (!_gameOver) StartCoroutine(TaskTimer(_taskDeviationFloor > taskDelay  ? _taskDeviationFloor : taskDelay));
+            if (!_gameOver) StartCoroutine(TaskTimer(_taskDeviationFloor > taskDelay ? _taskDeviationFloor : taskDelay));
         }
+    }
+
+    private IEnumerator DelaySpawnSingleTask(float time)
+    {
+        // wait the alloted time to start thetask
+        yield return new WaitForSeconds(time);
+
+        if (!_gameOver)
+        {
+            // start a random task
+            float weightNum = UnityEngine.Random.Range(0, _totalTaskWieght); // roll the target weight
+            float taskWeightIterator = 0; // adds weights until its more than num
+            int taskIndex = 0;
+            taskWeightIterator += _taskReferences[taskIndex].GetComponent<Task>().GetFrequencyRate();
+            //  Debug.Log(weightNum + "/" + _totalTaskWieght);
+
+            while (taskWeightIterator < weightNum)
+            {
+                taskIndex++;
+                taskWeightIterator += _taskReferences[taskIndex].GetComponent<Task>().GetFrequencyRate();
+                // Debug.Log(taskWeightIterator + "/" + weightNum);
+                // Debug.Log(taskIndex + " out of " + _taskReferences.Count + " tasks");
+            }
+
+            StartTask(taskIndex);
+        }
+
     }
 
 }
