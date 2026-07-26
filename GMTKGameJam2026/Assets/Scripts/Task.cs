@@ -4,6 +4,7 @@ public class Task : MonoBehaviour
 {
     // ------------------------------------- Variables -------------------------------------
     [SerializeField] protected float  _taskTime; // time before the task overrides
+    [SerializeField] protected int _taskFrequencyRate; // task rarity 1-3, 3 being common
     protected float  _taskTimeStamp; // time stamp used 
     protected bool _taskStarted = false;
     protected bool _taskPassed = true;
@@ -91,4 +92,6 @@ public class Task : MonoBehaviour
     public WindowControl GetTaskUIWindowControl() { return _rootUI.GetComponent<WindowControl>(); }
     public TaskData GetTaskData() { return _taskData; }
     public float GetCurrentTaskTimer() { return _taskTimeStamp - Time.time; }
+
+    public float GetFrequencyRate() { return _taskFrequencyRate; }
 }

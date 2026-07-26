@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Task
   _taskTime: 15
+  _taskBucket: 1
   _taskData: {fileID: 11400000, guid: f8c9bd2484ca44340b3a5cf0678b4d32, type: 2}
   _rootUI: {fileID: 3837787173920185272}
   _windowControl: {fileID: 1438024915424159937}

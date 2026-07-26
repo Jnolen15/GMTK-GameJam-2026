@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   _taskTime: 60
+  _taskFrequencyRate: 1
   _taskData: {fileID: 11400000, guid: aff8c62bb8b661948a3b558779bc46d5, type: 2}
   _rootUI: {fileID: 3837787173920185272}
   _windowControl: {fileID: 1438024915424159937}
