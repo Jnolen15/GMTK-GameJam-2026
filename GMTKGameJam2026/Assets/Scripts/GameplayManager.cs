@@ -241,14 +241,14 @@ public class GameplayManager : MonoBehaviour
             float taskWeightIterator = 0; // adds weights until its more than num
             int taskIndex = 0;
             taskWeightIterator += _taskReferences[taskIndex].GetComponent<Task>().GetFrequencyRate();
-            Debug.Log(weightNum + "/" + _totalTaskWieght);
+            //  Debug.Log(weightNum + "/" + _totalTaskWieght);
 
             while (taskWeightIterator < weightNum)
             {
                 taskIndex++;
                 taskWeightIterator += _taskReferences[taskIndex].GetComponent<Task>().GetFrequencyRate();
-                Debug.Log(taskWeightIterator + "/" + weightNum);
-                Debug.Log(taskIndex + " out of " + _taskReferences.Count + " tasks");
+                // Debug.Log(taskWeightIterator + "/" + weightNum);
+                // Debug.Log(taskIndex + " out of " + _taskReferences.Count + " tasks");
                 
             }
 

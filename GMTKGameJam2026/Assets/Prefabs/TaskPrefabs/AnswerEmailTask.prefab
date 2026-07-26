@@ -323,7 +323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8fa1960336e55946ae155fc7b0f7695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _taskTime: 15
+  _taskTime: 25
   _taskFrequencyRate: 3
   _taskData: {fileID: 11400000, guid: e62e3e87100d06c48a43cf4af7b76482, type: 2}
   _rootUI: {fileID: 3837787173920185272}
