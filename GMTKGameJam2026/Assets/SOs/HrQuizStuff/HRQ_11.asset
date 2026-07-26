@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ccf51b32cfa2d124aba8cff8f1727d35, type: 3}
-  m_Name: HRQ_3
+  m_Name: HRQ_11
   m_EditorClassIdentifier: Assembly-CSharp::HRQuizQSO
-  _question: 'You notice Terrance has released a tar-like crimson liquid in the break
-    room. What do you do? '
-  _answerRight: Report the incident to the janitor and then to HR.
-  _answerWrong: Oh boy, free tar like crimson liquid! Score!
+  _question: Janet showed up 2 hours late with a coffee and a bagel. What do you
+    do?
+  _inverseQuestion: Janet showed up 2 hours late with a coffee and a bagel. What
+    do you <color=red>not</color> do?
+  _answerRight: Remind her of the section on employee tardiness in the handbook.
+  _answerWrong: Give her the $5 I owe her for picking up my lunch.

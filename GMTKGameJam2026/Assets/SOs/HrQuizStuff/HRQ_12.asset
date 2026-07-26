@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HRQuizQSO
   _question: Christa summoned a low-level imp to do her spreadsheets. What do you
     do?
+  _inverseQuestion: Christa summoned a low-level imp to do her spreadsheets. What
+    do you <color=red>not</color> do?
   _answerRight: Banish her imp and remind her that spreadsheets must be examined
     by humans only.
   _answerWrong: Christa has the right idea. I summon a few imps of my own and go

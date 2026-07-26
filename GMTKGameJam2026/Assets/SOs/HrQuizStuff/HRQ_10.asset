@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ccf51b32cfa2d124aba8cff8f1727d35, type: 3}
-  m_Name: HRQ_4
+  m_Name: HRQ_10
   m_EditorClassIdentifier: Assembly-CSharp::HRQuizQSO
-  _question: You find Phill smoking a joint in the bathroom. What do you do?
-  _answerRight: Politely ask him to extinguish it and then report the incident to
-    HR.
-  _answerWrong: Take a puff then walk out. I ain't no snitch.
+  _question: Mike is asleep at his desk. What should you do?
+  _inverseQuestion: Mike is asleep at his desk. What should you <color=red>not</color>
+    do?
+  _answerRight: Gently wake him and remind him that sleeping is not permitted during
+    work hours.
+  _answerWrong: Spill his blood.

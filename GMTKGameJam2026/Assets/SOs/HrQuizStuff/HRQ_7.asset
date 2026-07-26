@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ccf51b32cfa2d124aba8cff8f1727d35, type: 3}
-  m_Name: HRQ_10
+  m_Name: HRQ_7
   m_EditorClassIdentifier: Assembly-CSharp::HRQuizQSO
-  _question: Mike is asleep at his desk. What should you do?
-  _answerRight: Gently wake him and remind him that sleeping is not permitted during
-    work hours.
-  _answerWrong: Spill his blood.
+  _question: An intern accidentally steps on your toe. What do you do?
+  _inverseQuestion: An intern accidentally steps on your toe. What do you <color=red>not</color>
+    do?
+  _answerRight: Tell them it's no problem and wish them a nice afternoon.
+  _answerWrong: Summon a 6th-level fire incantation and turn that plebeian into a
+    shadow.

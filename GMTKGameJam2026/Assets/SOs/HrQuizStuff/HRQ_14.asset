@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ccf51b32cfa2d124aba8cff8f1727d35, type: 3}
-  m_Name: HRQ_13
+  m_Name: HRQ_14
   m_EditorClassIdentifier: Assembly-CSharp::HRQuizQSO
-  _question: Grace is shooting spitballs at an intern. What do you do?
-  _answerRight: Stop her and remind her that interns are important members of the
-    team.
-  _answerWrong: Give it a shot and aim right for his eyes.
+  _question: Krystal has begun initiating a summoning ritual in the breakroom. What
+    do you do?
+  _inverseQuestion: Krystal has begun initiating a summoning ritual in the breakroom.
+    What do you <color=red>not</color> do?
+  _answerRight: Verify that she has filed the correct paperwork for this ritual.
+  _answerWrong: Fling a sandwich at her head so she does it somewhere else.

@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HRQuizQSO
   _question: Luke's eyes are pitch black and you suspect he has been staring into
     the void. What is your first course of action?
+  _inverseQuestion: Luke's eyes are pitch black and you suspect he has been staring
+    into the void. What is <color=red>not</color> your first course of action?
   _answerRight: Immediately call HR so they can quarantine the individual suspected
     of void contamination.
   _answerWrong: Complement them on their bold new look.

@@ -47,7 +47,10 @@ public class HrQuizTask : Task
         }
         _questionCount = _curQuestions.Count;
 
-        bool _directQuestions = (Random.Range(0, 2) == 0 ? true : false);
+        float f = Random.Range(0, 2);
+        bool _directQuestions = (f < 1 ? true : false);
+        Debug.Log(f + " : " + _directQuestions);
+        
 
         LoadNextQuestion();
 
@@ -88,23 +91,38 @@ public class HrQuizTask : Task
         if (_directQuestions)
         {
             _questionText.text = questionData.GetQuizQuestion();
+            // Randomly assing the right/wrong asnwers to one button or the other; inversing if the question is indirect
+            if (UnityEngine.Random.Range(1, 3) == 1)
+            {
+                // assigning answer text
+                ConfigureButton(_leftButton, questionData.GetQuizRightAnswer(), true);
+                ConfigureButton(_rightButton, questionData.GetQuizWrongAnswer(), false);
+            }
+            else
+            {
+                ConfigureButton(_leftButton, questionData.GetQuizWrongAnswer(), false);
+                ConfigureButton(_rightButton, questionData.GetQuizRightAnswer(), true);
+            }
         } else
         {
+            // Randomly assing the right/wrong asnwers to one button or the other; inversing if the question is indirect
             _questionText.text = questionData.GetInverseQuizQuestion();
+
+            if (UnityEngine.Random.Range(1, 3) == 1)
+            {
+                // assigning answer text
+                ConfigureButton(_leftButton, questionData.GetQuizRightAnswer(), false);
+                ConfigureButton(_rightButton, questionData.GetQuizWrongAnswer(), true);
+            }
+            else
+            {
+                ConfigureButton(_leftButton, questionData.GetQuizWrongAnswer(), true);
+                ConfigureButton(_rightButton, questionData.GetQuizRightAnswer(), false);
+            }
         }
             
 
-        // Randomly assing the right/wrong asnwers to one button or the other; inversing if the question is indirect
-        if (UnityEngine.Random.Range(1, 3) == 1 && _directQuestions)
-        {
-            // assigning answer text
-            ConfigureButton(_leftButton, questionData.GetQuizRightAnswer(), _directQuestions ? true : false);
-            ConfigureButton(_rightButton, questionData.GetQuizWrongAnswer(), _directQuestions ? false : true);
-        }
-        else {
-            ConfigureButton(_leftButton, questionData.GetQuizWrongAnswer(), _directQuestions ? false : true);
-            ConfigureButton(_rightButton, questionData.GetQuizRightAnswer(), _directQuestions ? true : false);
-        }
+        
 
         // Increment Question Index;
         _questionIndex += 1;

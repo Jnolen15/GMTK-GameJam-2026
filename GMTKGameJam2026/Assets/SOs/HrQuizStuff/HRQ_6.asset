@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: HRQ_6
   m_EditorClassIdentifier: Assembly-CSharp::HRQuizQSO
   _question: Keenan is playing solitaire during work hours. What do you do?
+  _inverseQuestion: Keenan is playing solitaire during work hours. What do you <color=red>not</color>
+    do?
   _answerRight: Tell him to stop and report the incident to HR.
   _answerWrong: Man, he sucks at that game. I would have to show him how it's done.

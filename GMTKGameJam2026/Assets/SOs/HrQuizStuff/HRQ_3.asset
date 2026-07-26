@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ccf51b32cfa2d124aba8cff8f1727d35, type: 3}
-  m_Name: HRQ_2
+  m_Name: HRQ_3
   m_EditorClassIdentifier: Assembly-CSharp::HRQuizQSO
-  _question: You notice Jake is flirting with Sarah while she is trying to work.
-    What should you say?
-  _answerRight: '"Excuse me, Jake, but this is hardly appropriate."'
-  _answerWrong: '"Out of the way, Jake; this is how it''s done".'
+  _question: 'You notice Terrance has released a tar-like crimson liquid in the break
+    room. What do you do? '
+  _inverseQuestion: 'You notice Terrance has released a tar-like crimson liquid in
+    the break room. What do you <color=red>not</color> do? '
+  _answerRight: Report the incident to the janitor and then to HR.
+  _answerWrong: Oh boy, free tar like crimson liquid! Score!

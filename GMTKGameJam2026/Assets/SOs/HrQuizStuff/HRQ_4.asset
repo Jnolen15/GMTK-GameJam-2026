@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ccf51b32cfa2d124aba8cff8f1727d35, type: 3}
-  m_Name: HRQ_8
+  m_Name: HRQ_4
   m_EditorClassIdentifier: Assembly-CSharp::HRQuizQSO
-  _question: 'Thomas released someone before they could be sanctified. What do you
-    do? '
-  _answerRight: Add Thomas to the sanctification list. His blood debt must be paid.
-  _answerWrong: Inform him on the correct procedure and report to HR.
+  _question: You find Phill smoking a joint in the bathroom. What do you do?
+  _inverseQuestion: You find Phill smoking a joint in the bathroom. What do you <color=red>not</color>
+    do?
+  _answerRight: Politely ask him to extinguish it and then report the incident to
+    HR.
+  _answerWrong: Take a puff then walk out. I ain't no snitch.

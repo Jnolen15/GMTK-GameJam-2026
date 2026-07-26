@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ccf51b32cfa2d124aba8cff8f1727d35, type: 3}
-  m_Name: HRQ_9
+  m_Name: HRQ_8
   m_EditorClassIdentifier: Assembly-CSharp::HRQuizQSO
-  _question: Sam is snacking outside of the breakroom. What do you do?
-  _answerRight: Inform him food is only to be eaten in the breakroom.
-  _answerWrong: Steal his food and eat it in front of him. What's he gunna do about
-    it?
+  _question: 'Thomas released someone before they could be sanctified. What do you
+    do? '
+  _inverseQuestion: 'Thomas released someone before they could be sanctified. What
+    do you <color=red>not</color> do? '
+  _answerRight: Add Thomas to the sanctification list. His blood debt must be paid.
+  _answerWrong: Inform him on the correct procedure and report to HR.

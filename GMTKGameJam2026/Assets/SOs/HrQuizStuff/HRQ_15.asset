@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HRQuizQSO
   _question: Jared got you with the 'You got something on your shirt' prank, and
     now everyone is laughing. What do you do?
+  _inverseQuestion: Jared got you with the 'You got something on your shirt' prank,
+    and now everyone is laughing. What do you <color=red>not</color> do?
   _answerRight: Laugh with them but remind them that pranks are not permitted during
     work hours.
   _answerWrong: That's the last time he pulls some s*** like this and gets away with

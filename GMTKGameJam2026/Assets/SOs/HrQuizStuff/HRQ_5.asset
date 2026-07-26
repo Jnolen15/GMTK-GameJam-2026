@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ccf51b32cfa2d124aba8cff8f1727d35, type: 3}
-  m_Name: HRQ_14
+  m_Name: HRQ_5
   m_EditorClassIdentifier: Assembly-CSharp::HRQuizQSO
-  _question: Krystal has begun initiating a summoning ritual in the breakroom. What
-    do you do?
-  _answerRight: Verify that she has filed the correct paperwork for this ritual.
-  _answerWrong: Fling a sandwich at her head so she does it somewhere else.
+  _question: 'Chris placed a whoopie cushion on your chair. What do you do? '
+  _inverseQuestion: 'Chris placed a whoopie cushion on your chair. What do you <color=red>not</color>
+    do? '
+  _answerRight: Request he does not do that again and report the incident to HR.
+  _answerWrong: Prank him back by summoning a lower-level imp to tourment him.

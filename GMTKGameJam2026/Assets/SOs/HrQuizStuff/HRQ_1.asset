@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HRQuizQSO
   _question: Bob is taking an extra long time at the water bubbler, and it's getting
     on your nerves. What should you do?
+  _inverseQuestion: Bob is taking an extra long time at the water bubbler, and it's
+    getting on your nerves. What should you <color=red>not</color> do?
   _answerRight: Calmly count to 10 and then politely ask him to move.
   _answerWrong: WHAM! Nasty right hook straight to the jaw.
