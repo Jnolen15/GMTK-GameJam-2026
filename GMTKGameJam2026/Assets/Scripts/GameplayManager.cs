@@ -71,6 +71,7 @@ public class GameplayManager : MonoBehaviour
     void Start()
     {
         Task.OnTaskFailed += ReceiveFailedTask;
+        Task.OnTaskFinished += ReceiveCompletedTask;
 
         if (UsingTestParameters) UseTestParameters();
 
@@ -83,6 +84,7 @@ public class GameplayManager : MonoBehaviour
     private void OnDestroy()
     {
         Task.OnTaskFailed -= ReceiveFailedTask;
+        Task.OnTaskFinished -= ReceiveCompletedTask;
     }
 
     // tweaked testing values to check if they are working faster
@@ -166,6 +168,7 @@ public class GameplayManager : MonoBehaviour
 
     public void SpawnIntroTask()
     {
+        _activeTasks++;
         Debug.Log("Spawn " + _introTaskIndex);
 
         // Spawn new task
@@ -191,13 +194,13 @@ public class GameplayManager : MonoBehaviour
         {
             _tutorialComplete = true;
             StartCoroutine(TaskTimer(_baseTaskDeviationSeconds));
-
         }
     }
 
     public void StartTask(int index)
     {
         _activeTasks++;
+        Debug.Log(_activeTasks + " active tasks");
         // create new task
         GameObject newTask = Instantiate(_taskReferences[index], _windowZone);
 
@@ -227,6 +230,7 @@ public class GameplayManager : MonoBehaviour
             EndGame(3);
 
         _activeTasks--;
+        Debug.Log(_activeTasks + " active tasks");
         // attempt to spawn an task in if there are no tasks
         if (_tutorialComplete && _activeTasks <= 0)
         {
@@ -237,7 +241,8 @@ public class GameplayManager : MonoBehaviour
 
     private void ReceiveCompletedTask(Task task)
     {
-        _activeTasks++;
+        _activeTasks--;
+        Debug.Log(_activeTasks + " active tasks");
         // attempt to spawn an task in if there are no tasks
         if (_tutorialComplete && _activeTasks <= 0)
         {

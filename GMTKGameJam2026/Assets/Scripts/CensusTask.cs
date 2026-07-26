@@ -128,7 +128,7 @@ public class CensusTask : Task
 
         // generate Excluded Person + Type
         _excludedPerson = GeneratePerson();
-        _exclusionType = (Exclusion) Random.Range(0, (int) Exclusion.Virginity); 
+        _exclusionType = (Exclusion) Random.Range(0, (int) Exclusion.Virginity + 1); 
 
         switch (_exclusionType)
         {
@@ -142,7 +142,8 @@ public class CensusTask : Task
                 _exclusionTextBox.text = "Select all Sanctify targets that are <color=red>not:</color> " + _excludedPerson.GetBloodType();
                 break;
             case Exclusion.Virginity:
-                _exclusionTextBox.text = "Select all Sanctify targets that are <color=red>not:</color> " + _excludedPerson.GetVirginity() + "s";
+                string s = _excludedPerson.GetVirginity() == true ? "virigins" : "non-virgins";
+                _exclusionTextBox.text = "Select all Sanctify targets that are <color=red>not:</color> " + s;
                 break;
 
         }

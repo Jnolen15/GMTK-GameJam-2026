@@ -121,7 +121,7 @@ public class WindowManager : MonoBehaviour
 
     public void MakeMeFavoriteChild(Transform targetTrans)
     {
-        Debug.Log(targetTrans.name + " is my new fav!", targetTrans.gameObject);
+        // Debug.Log(targetTrans.name + " is my new fav!", targetTrans.gameObject);
 
         targetTrans.SetAsLastSibling();
     }
