@@ -4235,19 +4235,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7172187031008637666, guid: cc3dce49ca6f3a74185ef28f602e518d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7172187031008637666, guid: cc3dce49ca6f3a74185ef28f602e518d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 8862023453110247003}
+      objectReference: {fileID: 2968217437201096626}
     - target: {fileID: 7172187031008637666, guid: cc3dce49ca6f3a74185ef28f602e518d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: QuitGame
+      value: SetActive
       objectReference: {fileID: 0}
     - target: {fileID: 7172187031008637666, guid: cc3dce49ca6f3a74185ef28f602e518d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: WindowManager, Assembly-CSharp
+      value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7916556244288135898, guid: cc3dce49ca6f3a74185ef28f602e518d, type: 3}
       propertyPath: m_Pivot.x
