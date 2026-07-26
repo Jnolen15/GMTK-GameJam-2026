@@ -50,6 +50,7 @@ public class MainTaskTimerUI : MonoBehaviour
 
     private void UpdateText(float curTime)
     {
+        if (curTime < 0) curTime = 0 ;
         int minutes = Mathf.FloorToInt(curTime / 60);
         int seconds = Mathf.FloorToInt(curTime % 60);
         _textBox.text = string.Format("{0:00}:{1:00}", minutes, seconds);
