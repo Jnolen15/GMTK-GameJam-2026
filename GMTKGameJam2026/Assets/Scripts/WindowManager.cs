@@ -27,11 +27,15 @@ public class WindowManager : MonoBehaviour
 
     // =================== Setup ===================
     #region Setup
+    private void Awake()
+    {
+        GameplayManager.OnGameTimerStart += SetGameStart;
+    }
+
     private void Start()
     {
         _canvas = GetComponent<Canvas>();
 
-        GameplayManager.OnGameTimerStart += SetGameStart;
         GameplayManager.OnGameOver += SetGameEnd;
         GameplayManager.OnMainTaskTimerStart += StartSanctifyNotif;
         GameplayManager.OnMainTaskDelayReset += EndSanctifyNotif;
@@ -129,13 +133,17 @@ public class WindowManager : MonoBehaviour
     private void TaskSuccess(Task task)
     {
         _soundPlayer.PlaySFX();
-        _taskSuccessGroup.DOFade(0.8f, 0.2f).SetEase(Ease.OutSine).SetLoops(2, LoopType.Yoyo);
+        _taskSuccessGroup.DOFade(0.8f, 0.2f).SetEase(Ease.OutSine).SetLoops(2, LoopType.Yoyo).OnComplete(() => {
+            _taskSuccessGroup.alpha = 0;
+        }); ;
     }
 
     private void StrikeStrike(Task task)
     {
         _soundPlayer.PlaySFX(_taskFail);
-        _taskFailGroup.DOFade(0.8f, 0.2f).SetEase(Ease.OutSine).SetLoops(2, LoopType.Yoyo);
+        _taskFailGroup.DOFade(0.8f, 0.2f).SetEase(Ease.OutSine).SetLoops(2, LoopType.Yoyo).OnComplete(() => {
+            _taskFailGroup.alpha = 0;
+        }); ;
 
         foreach (Strike strike in _strikes)
         {
@@ -155,8 +163,9 @@ public class WindowManager : MonoBehaviour
     private void EndSanctifyNotif(float timeStamp)
     {
         _sanctifyReadyGroup.DOKill(true);
-        _sanctifyReadyGroup.DOFade(0f, 0.2f).SetEase(Ease.OutSine);
-        _sanctifyReadyGroup.alpha = 0;
+        _sanctifyReadyGroup.DOFade(0f, 0.2f).SetEase(Ease.OutSine).OnComplete(() => {
+            _sanctifyReadyGroup.alpha = 0;
+        });
     }
 
     public void QuitGame()
