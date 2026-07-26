@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TaskData
   _taskName: You got mail!
   _taskTrayName: Email
-  _taskIcon: {fileID: 21300000, guid: 31353c7b1a0deea43ba3a4cd33c9aeca, type: 3}
+  _taskIcon: {fileID: 21300000, guid: c9abb35bfdb542848b1634874611b1bd, type: 3}
   _taskIconMat: {fileID: 2100000, guid: 6eb084020e043c04eac5cdf5b3a99481, type: 2}
   _taskHint: Reply to the email

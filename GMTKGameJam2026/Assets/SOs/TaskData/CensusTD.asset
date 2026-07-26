@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TaskData
   _taskName: Sanctify Targets
   _taskTrayName: Census
-  _taskIcon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  _taskIcon: {fileID: 21300000, guid: c9abb35bfdb542848b1634874611b1bd, type: 3}
   _taskIconMat: {fileID: 2100000, guid: 3bcc939340bf54b4fba7c6a8700248e6, type: 2}
   _taskHint: Select correct targets

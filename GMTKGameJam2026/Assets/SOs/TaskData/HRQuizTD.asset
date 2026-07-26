@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TaskData
   _taskName: HR Quiz
   _taskTrayName: HR
-  _taskIcon: {fileID: 21300000, guid: 63dc24af442b32e4a981ccc83d9b0418, type: 3}
+  _taskIcon: {fileID: 21300000, guid: c9abb35bfdb542848b1634874611b1bd, type: 3}
   _taskIconMat: {fileID: 2100000, guid: 9672b61edd6018a4a9cbe0f3b37c7006, type: 2}
   _taskHint: Complete the quiz

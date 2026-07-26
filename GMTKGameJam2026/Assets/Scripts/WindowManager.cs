@@ -14,6 +14,7 @@ public class WindowManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _clock;
     [SerializeField] private CanvasGroup _taskFailGroup;
     [SerializeField] private CanvasGroup _taskSuccessGroup;
+    [SerializeField] private CanvasGroup _sanctifyReadyGroup;
     [SerializeField] private List<Strike> _strikes = new List<Strike>();
 
     [Header("Sfx")]
@@ -32,6 +33,8 @@ public class WindowManager : MonoBehaviour
 
         GameplayManager.OnGameTimerStart += SetGameStart;
         GameplayManager.OnGameOver += SetGameEnd;
+        GameplayManager.OnMainTaskTimerStart += StartSanctifyNotif;
+        GameplayManager.OnMainTaskDelayReset += EndSanctifyNotif;
         Task.OnTaskCreated += CreateTaskTrayElement;
         Task.OnTaskFinished += RemoveTaskTrayElement;
         Task.OnTaskFailed += RemoveTaskTrayElement;
@@ -43,6 +46,8 @@ public class WindowManager : MonoBehaviour
     {
         GameplayManager.OnGameTimerStart -= SetGameStart;
         GameplayManager.OnGameOver -= SetGameEnd;
+        GameplayManager.OnMainTaskTimerStart -= StartSanctifyNotif;
+        GameplayManager.OnMainTaskDelayReset -= EndSanctifyNotif;
         Task.OnTaskCreated -= CreateTaskTrayElement;
         Task.OnTaskFinished -= RemoveTaskTrayElement;
         Task.OnTaskFailed -= RemoveTaskTrayElement;
@@ -140,6 +145,18 @@ public class WindowManager : MonoBehaviour
                 break;
             }  
         }
+    }
+
+    private void StartSanctifyNotif(float timeStamp)
+    {
+        _sanctifyReadyGroup.DOFade(0.8f, 0.5f).SetEase(Ease.OutSine).SetLoops(-1, LoopType.Yoyo);
+    }
+
+    private void EndSanctifyNotif(float timeStamp)
+    {
+        _sanctifyReadyGroup.DOKill(true);
+        _sanctifyReadyGroup.DOFade(0f, 0.2f).SetEase(Ease.OutSine);
+        _sanctifyReadyGroup.alpha = 0;
     }
 
     public void QuitGame()
