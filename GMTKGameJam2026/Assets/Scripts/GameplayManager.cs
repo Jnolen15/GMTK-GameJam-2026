@@ -14,9 +14,10 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] public float _gameStartTime = 0; // keeps track of when the game "starts"
     
     [SerializeField] private float _shiftLengthMinutes = 30; // longest possible time the game can run
-    [SerializeField] private float _taskDeviationSeconds = 15; // time between giving the player tasks
+    [SerializeField] private float _baseTaskDeviationSeconds = 15; // time between giving the player tasks
+    [SerializeField] private float _possibleTaskDeviationSeconds = 2.5f;
     [SerializeField] private float _taskDeviationScaler = 0.9f; // multiplier that reduces time between each subsequent task
-    [SerializeField] private float _taskDeviationFloor = 5; // minimum time between tasks
+    [SerializeField] private float _taskDeviationFloor = 5f; // minimum time between tasks
     private float _totalTaskWieght = 0;
 
     private float _maxStrikes = 5;
@@ -77,7 +78,7 @@ public class GameplayManager : MonoBehaviour
         _gameStartTime = Time.time;
         OnGameTimerStart?.Invoke(_gameStartTime);
 
-        StartCoroutine(TaskTimer(_taskDeviationSeconds));
+        StartCoroutine(TaskTimer(_baseTaskDeviationSeconds));
 
         StartMainTask();
     }
@@ -93,7 +94,8 @@ public class GameplayManager : MonoBehaviour
         _shiftLengthMinutes = 0.5f;
         _mainTaskDelaySeconds = 2;
         _mainTaskTimeSeconds = 15;
-        _taskDeviationSeconds = 3;
+        _baseTaskDeviationSeconds = 4;
+        _possibleTaskDeviationSeconds = 1;
         _taskDeviationFloor = 1;
     }
 
@@ -235,23 +237,31 @@ public class GameplayManager : MonoBehaviour
         if(!_gameOver)
         {
             // start a random task
-            float weightNum = UnityEngine.Random.Range(0, _totalTaskWieght); // roll the target weight, might bug on max rolls
+            float weightNum = UnityEngine.Random.Range(0, _totalTaskWieght); // roll the target weight
             float taskWeightIterator = 0; // adds weights until its more than num
             int taskIndex = 0;
-            // Debug.Log(weightNum + "/" + _totalTaskWieght);
-            while (taskWeightIterator <= weightNum)
+            taskWeightIterator += _taskReferences[taskIndex].GetComponent<Task>().GetFrequencyRate();
+            Debug.Log(weightNum + "/" + _totalTaskWieght);
+
+            while (taskWeightIterator < weightNum)
             {
-                // Debug.Log(taskWeightIterator + "/" + weightNum);
                 taskIndex++;
                 taskWeightIterator += _taskReferences[taskIndex].GetComponent<Task>().GetFrequencyRate();
+                Debug.Log(taskWeightIterator + "/" + weightNum);
+                Debug.Log(taskIndex + " out of " + _taskReferences.Count + " tasks");
+                
             }
 
             StartTask(taskIndex);
 
-            
+
 
             // loop and start the next task with less time, floors at _minSecondsBetweenTasks
-            if (!_gameOver) StartCoroutine(TaskTimer(time * _taskDeviationScaler > _taskDeviationFloor ? time * _taskDeviationScaler : _taskDeviationFloor));
+            
+            float taskDelayOffset = UnityEngine.Random.Range(-_possibleTaskDeviationSeconds, _possibleTaskDeviationSeconds);
+            float taskDelay = (time) * _taskDeviationScaler;
+            Debug.Log(taskDelay + " seconds delay");
+            if (!_gameOver) StartCoroutine(TaskTimer(_taskDeviationFloor > taskDelay  ? _taskDeviationFloor : taskDelay));
         }
     }
 
