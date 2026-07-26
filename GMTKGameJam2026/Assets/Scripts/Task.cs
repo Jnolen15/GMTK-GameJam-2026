@@ -8,7 +8,7 @@ public class Task : MonoBehaviour
     protected float  _taskTimeStamp; // time stamp used 
     protected bool _taskStarted = false;
     protected bool _taskPassed = true;
-
+    protected bool _taskAborted = false;
 
     // references
     [SerializeField] private TaskData _taskData;
@@ -25,6 +25,7 @@ public class Task : MonoBehaviour
     protected virtual void Start()
     {
         // subscribe to events
+        GameplayManager.OnGameOver += AbortTask;
 
         // Starts when instantiated
 
@@ -37,11 +38,14 @@ public class Task : MonoBehaviour
     protected virtual void OnDestroy()
     {
         // unsubscribe from events
+        GameplayManager.OnGameOver -= AbortTask;
     }
 
     // Update is called once per frame
     protected virtual void Update()
     {
+        if (_taskAborted) return;
+
         if (Time.time > _taskTimeStamp)
         {
             // fail and clos task
@@ -86,6 +90,10 @@ public class Task : MonoBehaviour
         Destroy(this.gameObject);
     }
 
+    private void AbortTask(float timestamp)
+    {
+        _taskAborted = true;
+    }
 
     // Helpers
     public GameObject GetTaskUIObject() { return _rootUI; }

@@ -16,6 +16,10 @@ public class WindowManager : MonoBehaviour
     [SerializeField] private CanvasGroup _taskSuccessGroup;
     [SerializeField] private List<Strike> _strikes = new List<Strike>();
 
+    [Header("Sfx")]
+    [SerializeField] private SoundPlayer _soundPlayer;
+    [SerializeField] private AudioClip _taskFail;
+
     private List<TaskTrayElement> _trayElementList = new List<TaskTrayElement>();
     private Canvas _canvas;
     private float _gameStartTime;
@@ -119,11 +123,13 @@ public class WindowManager : MonoBehaviour
 
     private void TaskSuccess(Task task)
     {
+        _soundPlayer.PlaySFX();
         _taskSuccessGroup.DOFade(0.8f, 0.2f).SetEase(Ease.OutSine).SetLoops(2, LoopType.Yoyo);
     }
 
     private void StrikeStrike(Task task)
     {
+        _soundPlayer.PlaySFX(_taskFail);
         _taskFailGroup.DOFade(0.8f, 0.2f).SetEase(Ease.OutSine).SetLoops(2, LoopType.Yoyo);
 
         foreach (Strike strike in _strikes)

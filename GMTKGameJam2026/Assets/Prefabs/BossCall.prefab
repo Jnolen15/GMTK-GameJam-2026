@@ -181,6 +181,7 @@ RectTransform:
   m_Children:
   - {fileID: 5974064223101560849}
   - {fileID: 8288802797623864965}
+  - {fileID: 3073503614104290797}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -208,6 +209,10 @@ MonoBehaviour:
   _performaceReview: {fileID: 7683112638910238364}
   _performaceText: {fileID: 9185056219022477677}
   _statsText: {fileID: 1848007710620628743}
+  _soundPlayer: {fileID: 4973141898382884867}
+  _phoneCall: {fileID: 8300000, guid: 4b03fcfd693e49544b0ee59ada8cae67, type: 3}
+  _gameWin: {fileID: 8300000, guid: 173f04a3364ca144fb5e72ad88430ea3, type: 3}
+  _gameLoss: {fileID: 8300000, guid: b0cf6e88d6d2bd44e921d020b9d6f702, type: 3}
 --- !u!1 &1994041423642462111
 GameObject:
   m_ObjectHideFlags: 0
@@ -1794,3 +1799,76 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7916556244288135898, guid: cc3dce49ca6f3a74185ef28f602e518d, type: 3}
   m_PrefabInstance: {fileID: 2223370633210989663}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6581001372480885860
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8563173871723837842}
+    m_Modifications:
+    - target: {fileID: 8210957818132697481, guid: 6a516f310d3bf014b8664b382c6914a5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -35.91034
+      objectReference: {fileID: 0}
+    - target: {fileID: 8210957818132697481, guid: 6a516f310d3bf014b8664b382c6914a5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -34.196228
+      objectReference: {fileID: 0}
+    - target: {fileID: 8210957818132697481, guid: 6a516f310d3bf014b8664b382c6914a5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8210957818132697481, guid: 6a516f310d3bf014b8664b382c6914a5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8210957818132697481, guid: 6a516f310d3bf014b8664b382c6914a5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8210957818132697481, guid: 6a516f310d3bf014b8664b382c6914a5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8210957818132697481, guid: 6a516f310d3bf014b8664b382c6914a5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8210957818132697481, guid: 6a516f310d3bf014b8664b382c6914a5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8210957818132697481, guid: 6a516f310d3bf014b8664b382c6914a5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8210957818132697481, guid: 6a516f310d3bf014b8664b382c6914a5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9012140006491881688, guid: 6a516f310d3bf014b8664b382c6914a5, type: 3}
+      propertyPath: m_Name
+      value: SoundPlayer
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6a516f310d3bf014b8664b382c6914a5, type: 3}
+--- !u!4 &3073503614104290797 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8210957818132697481, guid: 6a516f310d3bf014b8664b382c6914a5, type: 3}
+  m_PrefabInstance: {fileID: 6581001372480885860}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4973141898382884867 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2184333592831562855, guid: 6a516f310d3bf014b8664b382c6914a5, type: 3}
+  m_PrefabInstance: {fileID: 6581001372480885860}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3d745eaef174114bbf7aa0af4d86812, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SoundPlayer

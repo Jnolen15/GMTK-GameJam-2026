@@ -16,6 +16,12 @@ public class GameEndDisplay : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _statsText;
     private bool _taskOpen = true;
 
+    [Header("Sfx")]
+    [SerializeField] private SoundPlayer _soundPlayer;
+    [SerializeField] private AudioClip _phoneCall;
+    [SerializeField] private AudioClip _gameWin;
+    [SerializeField] private AudioClip _gameLoss;
+
     // =================== Setup ===================
     #region Function
     private void Start()
@@ -52,6 +58,7 @@ public class GameEndDisplay : MonoBehaviour
 
     private IEnumerator DoGameEnd(string bossMsg, bool won, bool sanctLoss)
     {
+        _soundPlayer.PlaySFX(_phoneCall);
         _phoneIcon.SetActive(true);
 
         yield return new WaitForSeconds(3f);
@@ -73,11 +80,13 @@ public class GameEndDisplay : MonoBehaviour
         {
             _performaceText.text = "Day Complete! - WIN";
             _performaceText.color = Color.green;
+            _soundPlayer.PlaySFX(_gameWin);
         }
         else
         {
             _performaceText.text = "Fired! - LOSE";
             _performaceText.color = Color.red;
+            _soundPlayer.PlaySFX(_gameLoss);
         }
 
         _statsText.text = $"Sanctifications - {StatTracker.Instance.GetNumSanctifications()}\n" +

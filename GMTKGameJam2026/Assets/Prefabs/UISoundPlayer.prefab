@@ -144,5 +144,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UISoundPlayer
   _as: {fileID: 6531332296294165432}
   _hoverSFX: {fileID: 8300000, guid: 6a23265744007674ba0f4dc819fb6bff, type: 3}
-  _clickSFX: {fileID: 8300000, guid: 301026b9c90eaa24da9e11b25f5ab3f7, type: 3}
+  _clickSFX: {fileID: 8300000, guid: 91f8ae278cefb8742b542a33ac55e0fc, type: 3}
   _pitchShift: {x: 0.9, y: 1.1}
