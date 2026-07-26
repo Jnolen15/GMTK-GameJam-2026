@@ -229,8 +229,10 @@ public class GameplayManager : MonoBehaviour
             float weightNum = UnityEngine.Random.Range(0, _totalTaskWieght); // roll the target weight, might bug on max rolls
             float taskWeightIterator = 0; // adds weights until its more than num
             int taskIndex = 0;
+            // Debug.Log(weightNum + "/" + _totalTaskWieght);
             while (taskWeightIterator <= weightNum)
             {
+                // Debug.Log(taskWeightIterator + "/" + weightNum);
                 taskIndex++;
                 taskWeightIterator += _taskReferences[taskIndex].GetComponent<Task>().GetFrequencyRate();
             }
