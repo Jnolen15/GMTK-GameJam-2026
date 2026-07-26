@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34ed15bcbc66a7d49849b107dd3fb5f9, type: 3}
+  m_Name: Census 3
+  m_EditorClassIdentifier: Assembly-CSharp::EmailSO
+  _emailSender: Head Sanctifier
+  _emailBodyText: Hey I'm feeling under the weather and may or may not be hearing
+    inexorable whispers in the back of my mind and need to call out sick. Grab any
+    peon to take over my work for the day; All they need to do a press a button every
+    15 seconds, it should  literally impossible to screw up.

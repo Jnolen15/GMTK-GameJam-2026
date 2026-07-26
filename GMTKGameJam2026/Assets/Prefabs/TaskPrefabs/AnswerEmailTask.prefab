@@ -330,9 +330,14 @@ MonoBehaviour:
   _windowControl: {fileID: 1438024915424159937}
   _minCharacterCountRange: {x: 2, y: 4}
   _emails:
-  - {fileID: 11400000, guid: c2bcbbe4a30784049b32378aa6cef6b9, type: 2}
-  - {fileID: 11400000, guid: b3a5dcb47d5fec04cbe1351c5e19a5da, type: 2}
+  - {fileID: 11400000, guid: 54a672f93de90a44ca123522b69afa2f, type: 2}
+  - {fileID: 11400000, guid: bd270f5c474f30b40a120015a614a4b6, type: 2}
+  - {fileID: 11400000, guid: b3f807752ad11fd4b90f42ffae5e8fc4, type: 2}
+  - {fileID: 11400000, guid: 7f12e1cd4cb2bf64cb27ef2fe38d699e, type: 2}
   - {fileID: 11400000, guid: 6db6f4cdffc3be3448c3c247cb6ba145, type: 2}
+  - {fileID: 11400000, guid: 6db6f4cdffc3be3448c3c247cb6ba145, type: 2}
+  - {fileID: 11400000, guid: 6db6f4cdffc3be3448c3c247cb6ba145, type: 2}
+  - {fileID: 11400000, guid: d9c6b0e1cce762d4d86f2d85b956adb5, type: 2}
   _emailSender: {fileID: 8668183966458060545}
   _emailBody: {fileID: 5403277341064843571}
   _textInput: {fileID: 5146457803185198953}

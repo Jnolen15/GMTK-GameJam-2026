@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34ed15bcbc66a7d49849b107dd3fb5f9, type: 3}
+  m_Name: Census 1
+  m_EditorClassIdentifier: Assembly-CSharp::EmailSO
+  _emailSender: Billy Bob the Trash Demon
+  _emailBodyText: 'Hey man I''ve noticed that the wastebasket under your desk has
+    been super empty lately, and this is NOT helping me meet quotas. I need that
+    trash to keepup my energy around here so chop chop '

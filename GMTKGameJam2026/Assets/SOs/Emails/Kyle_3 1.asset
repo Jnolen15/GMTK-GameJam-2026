@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34ed15bcbc66a7d49849b107dd3fb5f9, type: 3}
+  m_Name: Kyle_3 1
+  m_EditorClassIdentifier: Assembly-CSharp::EmailSO
+  _emailSender: Chief Sacrifice Officer
+  _emailBodyText: Just wanted to give every one the current projections for Q3. Our
+    current santification trend shows us ending with about a 5% increase over last
+    quarter, but eldtritch contamination is also up about 6%. Batten down those hatches,
+    lock those security doors, and stay vigilant

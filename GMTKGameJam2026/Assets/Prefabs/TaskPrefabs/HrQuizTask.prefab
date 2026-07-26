@@ -287,6 +287,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 98665cba30b5c154a8eec938680f5fa8, type: 2}
   - {fileID: 11400000, guid: f23ed27e04553bd478015c886e0f5716, type: 2}
   - {fileID: 11400000, guid: 32bc6a1a922ba194bb1988ae9ba9fe35, type: 2}
+  - {fileID: 11400000, guid: 9e8c74c1b83bd0e4f9144922fc91271c, type: 2}
   _incorrectWarning: {fileID: 1200006614881419458}
   _requirementText: {fileID: 8371483556200536564}
 --- !u!1 &2660567061564743446
