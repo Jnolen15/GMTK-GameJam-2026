@@ -9,6 +9,7 @@ public class HrQuizTask : Task
 
     private int _questionIndex;
     private int _questionCount;
+    private bool _directQuestions = true;
 
     // references 
     [Header("HrQuizTask")]
@@ -46,6 +47,8 @@ public class HrQuizTask : Task
         }
         _questionCount = _curQuestions.Count;
 
+        bool _directQuestions = (Random.Range(0, 2) == 0 ? true : false);
+
         LoadNextQuestion();
 
         UpdateProgress();
@@ -77,19 +80,30 @@ public class HrQuizTask : Task
         // Get question data
         HRQuizQSO questionData = _curQuestions[_questionIndex];
 
-        // set question text
-        _questionText.text = questionData.GetQuizQuestion();
+        // coin flip to be random or indirect
+        
 
-        // Randomly assing the right/wrong asnwers to one button or the other
-        if (UnityEngine.Random.Range(1, 3) == 1)
+        // set question text
+
+        if (_directQuestions)
+        {
+            _questionText.text = questionData.GetQuizQuestion();
+        } else
+        {
+            _questionText.text = questionData.GetInverseQuizQuestion();
+        }
+            
+
+        // Randomly assing the right/wrong asnwers to one button or the other; inversing if the question is indirect
+        if (UnityEngine.Random.Range(1, 3) == 1 && _directQuestions)
         {
             // assigning answer text
-            ConfigureButton(_leftButton, questionData.GetQuizRightAnswer(), true);
-            ConfigureButton(_rightButton, questionData.GetQuizWrongAnswer(), false);
+            ConfigureButton(_leftButton, questionData.GetQuizRightAnswer(), _directQuestions ? true : false);
+            ConfigureButton(_rightButton, questionData.GetQuizWrongAnswer(), _directQuestions ? false : true);
         }
         else {
-            ConfigureButton(_leftButton, questionData.GetQuizWrongAnswer(), false);
-            ConfigureButton(_rightButton, questionData.GetQuizRightAnswer(), true);
+            ConfigureButton(_leftButton, questionData.GetQuizWrongAnswer(), _directQuestions ? false : true);
+            ConfigureButton(_rightButton, questionData.GetQuizRightAnswer(), _directQuestions ? true : false);
         }
 
         // Increment Question Index;

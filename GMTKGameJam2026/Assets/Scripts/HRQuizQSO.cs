@@ -7,12 +7,17 @@ public class HRQuizQSO : ScriptableObject
     [TextArea]
     [SerializeField] private string _question;
     [TextArea]
+    [SerializeField] private string _inverseQuestion;
+    [TextArea]
     [SerializeField] private string _answerRight;
     [TextArea]
     [SerializeField] private string _answerWrong;
 
     // =================== Functions ===================
     public string GetQuizQuestion() { return _question; }
+
+    public string GetInverseQuizQuestion() { return _inverseQuestion; }
+
     public string GetQuizRightAnswer() { return _answerRight; }
     public string GetQuizWrongAnswer() { return _answerWrong; }
 }
