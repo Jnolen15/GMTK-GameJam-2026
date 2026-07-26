@@ -48,7 +48,7 @@ public class HrQuizTask : Task
         _questionCount = _curQuestions.Count;
 
         float f = Random.Range(0, 2);
-        bool _directQuestions = (f < 1 ? true : false);
+        _directQuestions = (f < 1 ? true : false);
         Debug.Log(f + " : " + _directQuestions);
         
 
@@ -87,7 +87,6 @@ public class HrQuizTask : Task
         
 
         // set question text
-
         if (_directQuestions)
         {
             _questionText.text = questionData.GetQuizQuestion();
