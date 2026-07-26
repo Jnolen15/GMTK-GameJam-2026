@@ -133,16 +133,16 @@ public class CensusTask : Task
         switch (_exclusionType)
         {
             case Exclusion.Gender:
-                _exclusionTextBox.text = "Select all Sanctify targets that are not: " + _excludedPerson.GetGender();
+                _exclusionTextBox.text = "Select all Sanctify targets that are <color=red>not:</color> " + _excludedPerson.GetGender();
                 break;
             case Exclusion.Age:
-                _exclusionTextBox.text = "Select all Sanctify targets that are not older than: " + _excludedPerson.GetAge();
+                _exclusionTextBox.text = "Select all Sanctify targets that are <color=red>not</color> older than: " + _excludedPerson.GetAge();
                 break;
             case Exclusion.BloodType:
-                _exclusionTextBox.text = "Select all Sanctify targets that are not: " + _excludedPerson.GetBloodType();
+                _exclusionTextBox.text = "Select all Sanctify targets that are <color=red>not:</color> " + _excludedPerson.GetBloodType();
                 break;
             case Exclusion.Virginity:
-                _exclusionTextBox.text = "Select all Sanctify targets that are not: " + _excludedPerson.GetVirginity() + "s";
+                _exclusionTextBox.text = "Select all Sanctify targets that are <color=red>not:</color> " + _excludedPerson.GetVirginity() + "s";
                 break;
 
         }

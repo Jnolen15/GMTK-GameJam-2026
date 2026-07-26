@@ -5678,7 +5678,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: You're in charge of <color=red>Sanctifications</color> today. <color=#4C4C4C>The
     sanguine blood of the mortal coil must ever flow into the open maw of the beast
-    lest it breach and bring doom unto all peoples, yadda yadda.</color>
+    lest it breach and bring doom unto all peoples, yadda yadda.</color> Your shift
+    <color=red>ends at 2PM.</color>
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1e057b34cac5b4a4288076aa5ae86a46, type: 2}
   m_sharedMaterial: {fileID: 2313079862179993347, guid: 1e057b34cac5b4a4288076aa5ae86a46, type: 2}

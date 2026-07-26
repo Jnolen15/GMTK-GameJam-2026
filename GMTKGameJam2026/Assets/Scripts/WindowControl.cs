@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 using TMPro;
 using DG.Tweening;
 
-public class WindowControl : MonoBehaviour, IDragHandler, IBeginDragHandler
+public class WindowControl : MonoBehaviour, IDragHandler, IBeginDragHandler, IPointerDownHandler
 {
     // =================== Refrences ===================
     [SerializeField] private Transform _rootObj;
@@ -84,8 +84,6 @@ public class WindowControl : MonoBehaviour, IDragHandler, IBeginDragHandler
     {
         if (RectTransformUtility.ScreenPointToLocalPointInRectangle(_rectTransform, eventData.position, _cam, out Vector2 localPoint))
         {
-            _winMan.MakeMeFavoriteChild(_rootObj);
-
             float halfHeight = (_rectTransform.rect.height / 2);
             float topZone = (halfHeight - 50);
 
@@ -94,6 +92,11 @@ public class WindowControl : MonoBehaviour, IDragHandler, IBeginDragHandler
             else
                 _moveable = false;
         }
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        _winMan.MakeMeFavoriteChild(_rootObj);
     }
     #endregion
 }
