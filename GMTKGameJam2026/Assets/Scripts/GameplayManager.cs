@@ -19,6 +19,9 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] private float _taskDeviationFloor = 5; // minimum time between tasks
     private float _totalTaskWieght = 0;
 
+    private float _maxStrikes = 5;
+    private float _curStrikes;
+
     // main task variables
     private Boolean _mainTaskStarted = false;
     private float _mainTaskTimeStamp; // stamp for starting the main task
@@ -67,6 +70,8 @@ public class GameplayManager : MonoBehaviour
     #region Functions
     void Start()
     {
+        Task.OnTaskFailed += ReceiveFailedTask;
+
         if (UsingTestParameters) UseTestParameters();
 
         _gameStartTime = Time.time;
@@ -79,7 +84,7 @@ public class GameplayManager : MonoBehaviour
 
     private void OnDestroy()
     {
-         // unsubscribe from events
+        Task.OnTaskFailed -= ReceiveFailedTask;
     }
 
     // tweaked testing values to check if they are working faster
@@ -203,8 +208,12 @@ public class GameplayManager : MonoBehaviour
             OnGameEndTaskLoss?.Invoke();
     }
 
-    private void ReceiveFailedTask(Task task) { 
-        // code for failed task goes here
+    private void ReceiveFailedTask(Task task)
+    {
+        _curStrikes++;
+
+        if (_curStrikes >= _maxStrikes)
+            EndGame(3);
     }
 
     private Vector2 GetRandomScreenPos()

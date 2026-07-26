@@ -45,7 +45,7 @@ public class Task : MonoBehaviour
         if (Time.time > _taskTimeStamp)
         {
             // fail and clos task
-            _taskPassed = true;
+            _taskPassed = false;
             CloseTask(_taskPassed);
         } else
         {

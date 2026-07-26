@@ -11,6 +11,7 @@ public class WindowManager : MonoBehaviour
     [SerializeField] private GameObject _taskTrayElementPref;
     [SerializeField] private TaskData _testNewTaskData;
     [SerializeField] private TextMeshProUGUI _clock;
+    [SerializeField] private List<Strike> _strikes = new List<Strike>();
 
     private List<TaskTrayElement> _trayElementList = new List<TaskTrayElement>();
     private Canvas _canvas;
@@ -27,6 +28,7 @@ public class WindowManager : MonoBehaviour
         Task.OnTaskCreated += CreateTaskTrayElement;
         Task.OnTaskFinished += RemoveTaskTrayElement;
         Task.OnTaskFailed += RemoveTaskTrayElement;
+        Task.OnTaskFailed += StrikeStrike;
     }
 
     private void OnDestroy()
@@ -36,6 +38,7 @@ public class WindowManager : MonoBehaviour
         Task.OnTaskCreated -= CreateTaskTrayElement;
         Task.OnTaskFinished -= RemoveTaskTrayElement;
         Task.OnTaskFailed -= RemoveTaskTrayElement;
+        Task.OnTaskFailed -= StrikeStrike;
     }
 
     private void SetGameStart(float startTime)
@@ -107,6 +110,18 @@ public class WindowManager : MonoBehaviour
         Debug.Log(targetTrans.name + " is my new fav!", targetTrans.gameObject);
 
         targetTrans.SetAsLastSibling();
+    }
+
+    private void StrikeStrike(Task task)
+    {
+        foreach (Strike strike in _strikes)
+        {
+            if (!strike.GetIsStriken())
+            {
+                strike.SetStrike();
+                break;
+            }  
+        }
     }
     #endregion
 }
