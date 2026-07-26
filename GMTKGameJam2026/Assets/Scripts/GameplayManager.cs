@@ -2,7 +2,6 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using System;
-using UnityEditor.Rendering;
 
 public class GameplayManager : MonoBehaviour
 {
