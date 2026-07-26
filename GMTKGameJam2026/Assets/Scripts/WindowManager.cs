@@ -135,5 +135,10 @@ public class WindowManager : MonoBehaviour
             }  
         }
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
     #endregion
 }

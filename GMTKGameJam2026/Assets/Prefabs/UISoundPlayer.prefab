@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8210957818132697481}
   - component: {fileID: 6531332296294165432}
-  - component: {fileID: 2184333592831562855}
+  - component: {fileID: 3637109246077133431}
   m_Layer: 0
-  m_Name: SoundPlayer
+  m_Name: UISoundPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -130,7 +130,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2184333592831562855
+--- !u!114 &3637109246077133431
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,9 +139,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 9012140006491881688}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3d745eaef174114bbf7aa0af4d86812, type: 3}
+  m_Script: {fileID: 11500000, guid: 4a2a75f97c884484d806e7c4f61d2e14, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SoundPlayer
+  m_EditorClassIdentifier: Assembly-CSharp::UISoundPlayer
   _as: {fileID: 6531332296294165432}
-  _clipList: []
-  _pitchShift: {x: 1, y: 1}
+  _hoverSFX: {fileID: 8300000, guid: 6a23265744007674ba0f4dc819fb6bff, type: 3}
+  _clickSFX: {fileID: 8300000, guid: 301026b9c90eaa24da9e11b25f5ab3f7, type: 3}
+  _pitchShift: {x: 0.9, y: 1.1}
