@@ -79,8 +79,6 @@ public class GameplayManager : MonoBehaviour
         _gameStartTime = Time.time;
         OnGameTimerStart?.Invoke(_gameStartTime);
 
-        StartCoroutine(TaskTimer(_baseTaskDeviationSeconds));
-
         StartMainTask();
     }
 
@@ -192,6 +190,9 @@ public class GameplayManager : MonoBehaviour
 
         // Increment intro index
         _introTaskIndex++;
+
+        // once tutorial tasks are done start random task spawn
+        if (_introTaskIndex >= _introTasks.Count) StartCoroutine(TaskTimer(_baseTaskDeviationSeconds));
     }
 
     public void StartTask(int index)
